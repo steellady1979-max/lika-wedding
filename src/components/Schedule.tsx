@@ -63,14 +63,18 @@ export function Schedule() {
                       რუკაზე ნახვა
                     </a>
                     {image && (
-                      <div className="mt-4 flex justify-center -ml-[3.25rem] sm:ml-0">
-                        <img
-                          src={image}
-                          alt={alt}
-                          loading="lazy"
-                          className="mx-auto w-full max-w-sm rounded-none border-y border-ink/10 shadow-soft sm:max-w-md sm:rounded-xl sm:border"
-                        />
-                      </div>
+                      <figure className="group mt-5 w-full max-w-[17rem] sm:max-w-xs">
+                        <div className="rounded-t-full border border-olive/40 bg-parchment p-1.5 shadow-soft">
+                          <div className="overflow-hidden rounded-t-full border border-olive/25">
+                            <img
+                              src={image}
+                              alt={alt}
+                              loading="lazy"
+                              className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                            />
+                          </div>
+                        </div>
+                      </figure>
                     )}
                   </div>
                 </li>
