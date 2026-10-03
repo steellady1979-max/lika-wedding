@@ -12,32 +12,28 @@ const panelImg = "/images/panel.jpg";
 const bowImg = "/images/bow.png";
 const archImg = "/images/arch.jpg";
 const envelopeImg = "/images/envelope.png";
-const coupleImg = "/images/couple-giorgi-victoria.jpg";
-
-const WEDDING_DATE = new Date("2026-10-04T16:00:00+04:00");
+const WEDDING_DATE = new Date("2026-10-31T14:00:00+04:00");
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "გიორგი & ვიქტორია — ქორწილის მოწვევა" },
+      { title: "ანეტა & გიორგი — ქორწილის მოწვევა" },
       {
         name: "description",
-        content: "გიორგი და ვიქტორია გეპატიჟებიან 4 ოქტომბერს, 2026 — განრიგი, ლოკაცია და RSVP.",
+        content: "ანეტა და გიორგი გეპატიჟებიან 31 ოქტომბერს, 2026 — განრიგი, ლოკაცია და RSVP.",
       },
-      { property: "og:title", content: "გიორგი & ვიქტორია — 4 ოქტომბერი, 2026" },
+      { property: "og:title", content: "ანეტა & გიორგი — 31 ოქტომბერი, 2026" },
       {
         property: "og:description",
         content: "ინტერაქტიული ქორწილის მოწვევა — განრიგი, ლოკაცია და RSVP.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "/images/couple-giorgi-victoria.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "გიორგი & ვიქტორია — 4 ოქტომბერი, 2026" },
+      { name: "twitter:title", content: "ანეტა & გიორგი — 31 ოქტომბერი, 2026" },
       {
         name: "twitter:description",
         content: "ინტერაქტიული ქორწილის მოწვევა — განრიგი, ლოკაცია და RSVP.",
       },
-      { name: "twitter:image", content: "/images/couple-giorgi-victoria.jpg" },
     ],
   }),
   component: Invitation,
@@ -50,7 +46,7 @@ function Invitation() {
 
   return (
     <main className="relative min-h-screen bg-backdrop">
-      <h1 className="sr-only">გიორგი და ვიქტორია — ქორწილის მოწვევა, 4 ოქტომბერი, 2026</h1>
+      <h1 className="sr-only">ანეტა და გიორგი — ქორწილის მოწვევა, 31 ოქტომბერი, 2026</h1>
 
       <div
         className={`transition-all duration-[1600ms] ease-out ${
@@ -64,6 +60,7 @@ function Invitation() {
         <Schedule />
         <Guestbook />
         <CoupleImage />
+        <DressCode />
         <Rsvp />
       </div>
 
@@ -142,7 +139,7 @@ function Hero() {
           shimmer={false}
           className="font-geo text-[13vw] leading-[1.1] sm:text-6xl"
         >
-          გიორგი
+          ანეტა
         </SparkleTitle>
         <p className="my-1 font-geo text-2xl text-ink/70">&amp;</p>
         <SparkleTitle
@@ -150,10 +147,10 @@ function Hero() {
           shimmer={false}
           className="font-geo text-[13vw] leading-[1.1] sm:text-6xl"
         >
-          ვიქტორია
+          გიორგი
         </SparkleTitle>
         <div className="mt-8 rounded-full bg-parchment/70 px-6 py-3 backdrop-blur-[2px]">
-          <p className="font-geo text-sm tracking-[0.3em] text-ink/85">4 ოქტომბერი, 2026</p>
+          <p className="font-geo text-sm tracking-[0.3em] text-ink/85">31 ოქტომბერი, 2026</p>
         </div>
 
         <Countdown />
@@ -230,40 +227,22 @@ function EnvelopeSection() {
                   className="font-geo text-[0.9rem] leading-[1.9] text-ink/85"
                 />
                 <Typewriter
-                  text="ეს დღეც დადგა!"
+                  text="გეპატიჟებით ჩვენი ერთ-ერთი ყველაზე მნიშვნელოვანი და ლამაზი დღის გასაზიარებლად"
+                  speed={32}
+                  startDelay={1900}
+                  className="mt-2 font-geo text-[0.9rem] leading-[1.9] text-ink/85"
+                />
+                <Typewriter
+                  text="სიყვარულით"
                   speed={55}
-                  startDelay={1800}
-                  className="mt-2 font-geo text-[0.9rem] leading-[1.9] text-ink/85"
+                  startDelay={4800}
+                  className="mt-4 font-geo text-[0.85rem] text-ink/70"
                 />
                 <Typewriter
-                  text="გიწვევთ ჩვენი სიყვარულის ისტორიის დაგვირგვინების დღეს ჩვენს ქორწილში."
-                  speed={32}
-                  startDelay={2700}
-                  className="mt-2 font-geo text-[0.9rem] leading-[1.9] text-ink/85"
-                />
-                <Typewriter
-                  text="ამ დიდი სიხარულის თქვენთვის გაზიარება ყველაფერს კიდევ უფრო განსაკუთრებულად აქცევს."
-                  speed={32}
-                  startDelay={4900}
-                  className="mt-2 font-geo text-[0.9rem] leading-[1.9] text-ink/85"
-                />
-                <Typewriter
-                  text="გვსურს გახდეთ ამ ულამაზესი დღის ნაწილი."
-                  speed={32}
-                  startDelay={7900}
-                  className="mt-2 font-geo text-[0.9rem] leading-[1.9] text-ink/85"
-                />
-                <Typewriter
-                  text="გპირდებით ულამაზეს მოგონებებს, სითბოსა და უსაზღვრო სიხარულს."
-                  speed={32}
-                  startDelay={9100}
-                  className="mt-2 font-geo text-[0.9rem] leading-[1.9] text-ink/85"
-                />
-                <Typewriter
-                  text="გიორგი & ვიქტორია"
+                  text="ანეტა & გიორგი"
                   speed={55}
-                  startDelay={11000}
-                  className="mt-4 font-geo text-[0.95rem] text-wine"
+                  startDelay={5600}
+                  className="font-geo text-[0.95rem] text-wine"
                 />
               </div>
             ) : (
@@ -346,18 +325,69 @@ function Rsvp() {
   );
 }
 
+const COUPLE_PHOTOS = [
+  { src: "/images/perfect_1.jpg", alt: "ანეტა და გიორგი — ბავშვობის ფოტოები" },
+  { src: "/images/couple_2.jpg", alt: "ანეტა და გიორგი აივანზე" },
+  { src: "/images/couple_1.jpg", alt: "ანეტა და გიორგი ვარდებით" },
+];
+
 function CoupleImage() {
+  const [i, setI] = useState(0);
+  const startX = useRef<number | null>(null);
+  const n = COUPLE_PHOTOS.length;
+  const go = (d: number) => setI((v) => (v + d + n) % n);
+  useEffect(() => {
+    const id = window.setInterval(() => setI((v) => (v + 1) % n), 5000);
+    return () => window.clearInterval(id);
+  }, [i, n]);
   return (
     <section className="bg-parchment px-0 pt-16 sm:px-6">
       <Reveal>
-        <figure className="mx-auto max-w-none sm:max-w-xl">
-          <img
-            src={coupleImg}
-            alt="აკვარელით დახატული გიორგი და ვიქტორია ვარდებით"
-            loading="lazy"
-            className="w-full rounded-none border-y border-ink/10 shadow-soft sm:rounded-2xl sm:border"
-          />
+        <figure className="relative mx-auto max-w-none sm:max-w-xl">
+          <div
+            className="overflow-hidden border-y border-ink/10 shadow-soft sm:rounded-2xl sm:border"
+            onTouchStart={(e) => (startX.current = e.touches[0]!.clientX)}
+            onTouchEnd={(e) => {
+              if (startX.current === null) return;
+              const dx = e.changedTouches[0]!.clientX - startX.current;
+              if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+              startX.current = null;
+            }}
+          >
+            <div
+              className="flex transition-transform duration-700 ease-out"
+              style={{ transform: `translateX(-${i * 100}%)` }}
+            >
+              {COUPLE_PHOTOS.map((p) => (
+                <img key={p.src} src={p.src} alt={p.alt} loading="lazy" className="w-full shrink-0 object-cover" />
+              ))}
+            </div>
+          </div>
+          <button aria-label="წინა" onClick={() => go(-1)} className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-parchment/80 font-geo text-wine shadow-soft">‹</button>
+          <button aria-label="შემდეგი" onClick={() => go(1)} className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-parchment/80 font-geo text-wine shadow-soft">›</button>
+          <div className="mt-4 flex justify-center gap-2">
+            {COUPLE_PHOTOS.map((p, k) => (
+              <button key={p.src} aria-label={`ფოტო ${k + 1}`} onClick={() => setI(k)} className={`h-2 rounded-full transition-all ${k === i ? "w-6 bg-wine" : "w-2 bg-ink/25"}`} />
+            ))}
+          </div>
         </figure>
+      </Reveal>
+    </section>
+  );
+}
+
+function DressCode() {
+  return (
+    <section className="bg-parchment px-6 pt-16">
+      <Reveal>
+        <div className="mx-auto max-w-xl rounded-2xl border border-ink/10 bg-ink/5 p-7 text-center shadow-soft">
+          <SparkleTitle className="font-geo text-2xl">დრესკოდი</SparkleTitle>
+          <p className="mt-3 font-geo text-lg text-wine">შემოდგომის ფერები</p>
+          <p className="mt-2 font-geo text-sm leading-relaxed text-ink/70">
+            გთხოვთ, ჩაიცვათ შემოდგომის თბილ ტონებში — ზეთისხილისფერი, ბორდო, ტერაკოტა, ოქროსფერი და შოკოლადისფერი.
+          </p>
+          <img src="/images/dresscode.jpg" alt="სტუმრები შემოდგომის ფერის სამოსში" loading="lazy" className="mx-auto mt-6 w-full max-w-sm rounded-xl border border-ink/10" />
+        </div>
       </Reveal>
     </section>
   );

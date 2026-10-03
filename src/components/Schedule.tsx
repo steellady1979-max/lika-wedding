@@ -2,34 +2,26 @@ import { Reveal } from "./Reveal";
 import { SparkleTitle } from "./SparkleTitle";
 import { Church, MapPin, PenLine, UtensilsCrossed } from "lucide-react";
 
-const potiImg = "/images/poti-cathedral.jpg";
-const signingCeremonyImg = "/images/signing-ceremony.jpg";
-const bagrationiImg = "/images/bagrationi.jpg";
-
-const ITEMS = [
+const ITEMS: { time: string; icon: typeof Church; title: string; map: string; image?: string; alt?: string }[] = [
   {
-    time: "16:00",
+    time: "14:00",
     icon: Church,
-    title: "ჯვრისწერა — ფოთის საკათედრო ტაძარი",
-    map: "https://maps.app.goo.gl/m6CqeUWnruJGZgwd8",
-    image: potiImg,
-    alt: "ფოთის საკათედრო ტაძარი, აკვარელი",
+    title: "ჯვრისწერა — საგარეჯო, ნინოწმინდის მონასტერი",
+    map: "https://maps.app.goo.gl/nCEMkXJLqwfCZTPY7",
   },
   {
-    time: "17:30",
+    time: "16:30",
     icon: PenLine,
-    title: "ხელის მოწერა — კოლხეთის ეროვნული პარკი",
-    map: "https://maps.app.goo.gl/b8gDZjxaj6KcoKEL9",
-    image: signingCeremonyImg,
-    alt: "ხელის მოწერის ცერემონია, აკვარელი",
+    title: "ხელისმოწერის ცერემონია — მანავი, გიუაანი მეღვინეობა",
+    map: "https://maps.app.goo.gl/ncv15eDxJQcHkNZV8",
+    image: "/images/church_1.jpg",
+    alt: "ხელისმოწერის ცერემონია, აკვარელი",
   },
   {
-    time: "19:00",
+    time: "18:00",
     icon: UtensilsCrossed,
-    title: "სადილი — რესტორანი „ბაგრატიონი“",
-    map: "https://maps.app.goo.gl/bTKfJS68hFJpdzG79",
-    image: bagrationiImg,
-    alt: "რესტორანი ბაგრატიონი, აკვარელი",
+    title: "ვახშამი — მანავი, გიუაანი მეღვინეობა",
+    map: "https://maps.app.goo.gl/ncv15eDxJQcHkNZV8",
   },
 ];
 
