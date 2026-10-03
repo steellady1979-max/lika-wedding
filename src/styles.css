@@ -137,6 +137,7 @@
   --parchment: oklch(0.975 0.012 85);
   --ink: oklch(0.3 0.04 120);
   --wine: oklch(0.36 0.12 15);
+  --olive: oklch(0.47 0.09 118);
   --sage: oklch(0.55 0.075 150);
   --shadow-soft: 0 12px 30px -12px oklch(0.26 0.085 18 / 0.35);
   --shadow-door: 0 0 60px -10px oklch(0.22 0.07 18 / 0.5);
@@ -155,6 +156,7 @@
   --color-parchment: var(--parchment);
   --color-ink: var(--ink);
   --color-wine: var(--wine);
+  --color-olive: var(--olive);
   --color-sage: var(--sage);
   --shadow-soft: var(--shadow-soft);
 
@@ -246,13 +248,13 @@
 @utility shimmer-text {
   background-image: linear-gradient(
     100deg,
-    var(--wine) 0%,
-    var(--wine) 32%,
+    var(--olive) 0%,
+    var(--olive) 32%,
     oklch(0.86 0.09 90) 46%,
     oklch(0.98 0.03 95) 52%,
     oklch(0.86 0.09 90) 58%,
-    var(--wine) 72%,
-    var(--wine) 100%
+    var(--olive) 72%,
+    var(--olive) 100%
   );
   background-size: 200% 100%;
   -webkit-background-clip: text;

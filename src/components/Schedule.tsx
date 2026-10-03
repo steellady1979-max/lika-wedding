@@ -14,7 +14,7 @@ const ITEMS: { time: string; icon: typeof Church; title: string; map: string; im
     icon: PenLine,
     title: "ხელისმოწერის ცერემონია — მანავი, გიუაანი მეღვინეობა",
     map: "https://maps.app.goo.gl/ncv15eDxJQcHkNZV8",
-    image: "/images/church_1.jpg",
+    image: "/images/ceremony.jpg",
     alt: "ხელისმოწერის ცერემონია, აკვარელი",
   },
   {
@@ -39,8 +39,8 @@ export function Schedule() {
               {ITEMS.map(({ time, icon: Icon, title, map, image, alt }, i) => (
                 <li key={time} className="relative flex gap-4">
                   <div className="flex flex-col items-center pl-5 sm:pl-1">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-wine/20 bg-wine/10">
-                      <Icon className="h-4 w-4 text-wine" strokeWidth={1.5} />
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-olive/20 bg-olive/10">
+                      <Icon className="h-4 w-4 text-olive" strokeWidth={1.5} />
                     </span>
                     {i < ITEMS.length - 1 && <span className="mt-1 w-px flex-1 bg-ink/15" />}
                   </div>
@@ -51,7 +51,7 @@ export function Schedule() {
                       href={map}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-2 inline-flex items-center gap-2 rounded-full border border-wine/25 px-4 py-1.5 font-geo text-xs tracking-[0.15em] text-wine transition hover:bg-wine hover:text-parchment"
+                      className="mt-2 inline-flex items-center gap-2 rounded-full border border-olive/25 px-4 py-1.5 font-geo text-xs tracking-[0.15em] text-olive transition hover:bg-olive hover:text-parchment"
                     >
                       <MapPin className="h-3.5 w-3.5" strokeWidth={1.5} />
                       რუკაზე ნახვა

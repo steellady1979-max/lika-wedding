@@ -21,7 +21,7 @@ export function SparkleTitle({
 }) {
   return (
     <span className="relative inline-block">
-      <Tag className={`${shimmer ? "shimmer-text" : "text-wine"} ${className}`}>{children}</Tag>
+      <Tag className={`${shimmer ? "shimmer-text" : "text-olive"} ${className}`}>{children}</Tag>
       <span aria-hidden="true" className="pointer-events-none absolute inset-0">
         {DOTS.map((d, i) => (
           <Sparkles

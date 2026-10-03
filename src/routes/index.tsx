@@ -177,7 +177,7 @@ function Countdown() {
     <div className="mt-8 flex gap-3 rounded-2xl bg-parchment/70 px-5 py-4 backdrop-blur-[2px]">
       {parts.map((p) => (
         <div key={p.l} className="w-14">
-          <p className="font-geo text-2xl text-wine">{String(p.v).padStart(2, "0")}</p>
+          <p className="font-geo text-2xl text-olive">{String(p.v).padStart(2, "0")}</p>
           <p className="font-geo text-[0.6rem] tracking-[0.2em] text-ink/60">{p.l}</p>
         </div>
       ))}
@@ -242,7 +242,7 @@ function EnvelopeSection() {
                   text="ანეტა & გიორგი"
                   speed={55}
                   startDelay={5600}
-                  className="font-geo text-[0.95rem] text-wine"
+                  className="font-geo text-[0.95rem] text-olive"
                 />
               </div>
             ) : (
@@ -326,7 +326,7 @@ function Rsvp() {
 }
 
 const COUPLE_PHOTOS = [
-  { src: "/images/perfect_1.jpg", alt: "ანეტა და გიორგი — ბავშვობის ფოტოები" },
+  { src: "/images/perfect_2.jpg", alt: "ანეტა და გიორგი — ბავშვობის ფოტოები" },
   { src: "/images/couple_2.jpg", alt: "ანეტა და გიორგი აივანზე" },
   { src: "/images/couple_1.jpg", alt: "ანეტა და გიორგი ვარდებით" },
 ];
@@ -363,11 +363,11 @@ function CoupleImage() {
               ))}
             </div>
           </div>
-          <button aria-label="წინა" onClick={() => go(-1)} className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-parchment/80 font-geo text-wine shadow-soft">‹</button>
-          <button aria-label="შემდეგი" onClick={() => go(1)} className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-parchment/80 font-geo text-wine shadow-soft">›</button>
+          <button aria-label="წინა" onClick={() => go(-1)} className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-parchment/80 font-geo text-olive shadow-soft">‹</button>
+          <button aria-label="შემდეგი" onClick={() => go(1)} className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-parchment/80 font-geo text-olive shadow-soft">›</button>
           <div className="mt-4 flex justify-center gap-2">
             {COUPLE_PHOTOS.map((p, k) => (
-              <button key={p.src} aria-label={`ფოტო ${k + 1}`} onClick={() => setI(k)} className={`h-2 rounded-full transition-all ${k === i ? "w-6 bg-wine" : "w-2 bg-ink/25"}`} />
+              <button key={p.src} aria-label={`ფოტო ${k + 1}`} onClick={() => setI(k)} className={`h-2 rounded-full transition-all ${k === i ? "w-6 bg-olive" : "w-2 bg-ink/25"}`} />
             ))}
           </div>
         </figure>
@@ -382,11 +382,11 @@ function DressCode() {
       <Reveal>
         <div className="mx-auto max-w-xl rounded-2xl border border-ink/10 bg-ink/5 p-7 text-center shadow-soft">
           <SparkleTitle className="font-geo text-2xl">დრესკოდი</SparkleTitle>
-          <p className="mt-3 font-geo text-lg text-wine">შემოდგომის ფერები</p>
+          <p className="mt-3 font-geo text-lg text-olive">შემოდგომის ფერები</p>
           <p className="mt-2 font-geo text-sm leading-relaxed text-ink/70">
             გთხოვთ, ჩაიცვათ შემოდგომის თბილ ტონებში — ზეთისხილისფერი, ბორდო, ტერაკოტა, ოქროსფერი და შოკოლადისფერი.
           </p>
-          <img src="/images/dresscode.jpg" alt="სტუმრები შემოდგომის ფერის სამოსში" loading="lazy" className="mx-auto mt-6 w-full max-w-sm rounded-xl border border-ink/10" />
+          <img src="/images/dresscode.png" alt="სტუმრები შემოდგომის ფერის სამოსში" loading="lazy" className="mx-auto mt-6 w-full max-w-sm rounded-xl border border-ink/10" />
         </div>
       </Reveal>
     </section>
@@ -453,7 +453,7 @@ function RsvpForm({ onSent }: { onSent: (attending: boolean) => void }) {
           maxLength={120}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="mt-1 w-full rounded-lg border border-ink/15 bg-parchment px-4 py-3 font-geo text-sm text-ink outline-none focus:border-wine"
+          className="mt-1 w-full rounded-lg border border-ink/15 bg-parchment px-4 py-3 font-geo text-sm text-ink outline-none focus:border-olive"
         />
       </div>
 
@@ -471,7 +471,7 @@ function RsvpForm({ onSent }: { onSent: (attending: boolean) => void }) {
               setAdditionalGuestNames("");
             }
           }}
-          className="mt-1 w-full rounded-lg border border-ink/15 bg-parchment px-4 py-3 font-geo text-sm text-ink outline-none focus:border-wine"
+          className="mt-1 w-full rounded-lg border border-ink/15 bg-parchment px-4 py-3 font-geo text-sm text-ink outline-none focus:border-olive"
         >
           <option value="0">დიახ, ვიქნები</option>
           <option value="1">დიახ, +1 სტუმართან ერთად</option>
@@ -500,17 +500,17 @@ function RsvpForm({ onSent }: { onSent: (attending: boolean) => void }) {
             value={additionalGuestNames}
             onChange={(e) => setAdditionalGuestNames(e.target.value)}
             placeholder="ჩაწერეთ თითოეული სტუმრის სახელი და გვარი ახალ ხაზზე"
-            className="mt-1 w-full rounded-lg border border-ink/15 bg-parchment px-4 py-3 font-geo text-sm text-ink outline-none focus:border-wine"
+            className="mt-1 w-full rounded-lg border border-ink/15 bg-parchment px-4 py-3 font-geo text-sm text-ink outline-none focus:border-olive"
           />
         </div>
       )}
 
-      {error && <p className="font-geo text-xs text-wine">{error}</p>}
+      {error && <p className="font-geo text-xs text-olive">{error}</p>}
 
       <button
         type="submit"
         disabled={busy}
-        className="mt-2 rounded-full bg-wine px-8 py-3 font-geo text-sm tracking-[0.2em] text-parchment transition hover:opacity-90 disabled:opacity-60"
+        className="mt-2 rounded-full bg-olive px-8 py-3 font-geo text-sm tracking-[0.2em] text-parchment transition hover:opacity-90 disabled:opacity-60"
       >
         {busy ? "იგზავნება..." : "გაგზავნა"}
       </button>
