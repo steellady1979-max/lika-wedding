@@ -139,7 +139,7 @@ function Hero() {
           shimmer={false}
           className="font-geo text-[13vw] leading-[1.1] sm:text-6xl"
         >
-          გიორგი
+          ანეტა
         </SparkleTitle>
         <p className="my-1 font-geo text-2xl text-ink/70">&amp;</p>
         <SparkleTitle
@@ -147,7 +147,7 @@ function Hero() {
           shimmer={false}
           className="font-geo text-[13vw] leading-[1.1] sm:text-6xl"
         >
-          ვიქტორია
+          გიორგი
         </SparkleTitle>
         <div className="mt-8 rounded-full bg-parchment/70 px-6 py-3 backdrop-blur-[2px]">
           <p className="font-geo text-sm tracking-[0.3em] text-ink/85">31 ოქტომბერი, 2026</p>
