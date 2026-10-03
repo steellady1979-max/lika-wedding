@@ -6,7 +6,7 @@ import { Typewriter } from "@/components/Typewriter";
 import { Schedule } from "@/components/Schedule";
 import { Guestbook } from "@/components/Guestbook";
 import MusicPlayer from "@/components/MusicPlayer";
-import { AutumnLeaves, AddToCalendar } from "@/components/Extras";
+import { AddToCalendar } from "@/components/Extras";
 import { sendToGoogleSheets } from "@/lib/googleSheets";
 
 const panelImg = "/images/panel.jpg";
@@ -98,7 +98,6 @@ function Invitation() {
         </div>
       </div>
 
-      {open && <AutumnLeaves />}
       <MusicPlayer />
     </main>
   );
@@ -156,7 +155,6 @@ function Hero() {
         </div>
 
         <Countdown />
-        <AddToCalendar />
       </div>
     </section>
   );
@@ -299,7 +297,7 @@ function EnvelopeSection() {
 }
 
 function Rsvp() {
-  const [sentMessage, setSentMessage] = useState<string | null>(null);
+  const [attending, setAttending] = useState<boolean | null>(null);
   return (
     <section className="bg-parchment px-6 py-20">
       <div className="mx-auto max-w-xl text-center">
@@ -314,14 +312,15 @@ function Rsvp() {
           />
         </div>
 
-        {sentMessage ? (
-          <p className="mt-10 font-geo text-lg text-ink">{sentMessage}</p>
+        {attending !== null ? (
+          <div className="mt-10">
+            <p className="font-geo text-lg text-ink">
+              {attending ? "გმადლობთ, გელოდებით სიყვარულით" : "მადლობა პასუხისთვის"}
+            </p>
+            {attending && <AddToCalendar />}
+          </div>
         ) : (
-          <RsvpForm
-            onSent={(attending) =>
-              setSentMessage(attending ? "გმადლობთ, გელოდებით სიყვარულით" : "მადლობა პასუხისთვის")
-            }
-          />
+          <RsvpForm onSent={(a) => setAttending(a)} />
         )}
       </div>
     </section>
