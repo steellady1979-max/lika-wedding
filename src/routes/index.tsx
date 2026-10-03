@@ -466,13 +466,10 @@ function DressCode() {
         <div className="mx-auto max-w-xl text-center">
           <SparkleTitle className="font-geo text-2xl">დრესკოდი</SparkleTitle>
           <p className="mt-3 font-geo text-lg text-olive">შემოდგომის ფერები</p>
-          <p className="mt-2 font-geo text-sm leading-relaxed text-ink/70">
-            გთხოვთ, ჩაიცვათ შემოდგომის თბილ ტონებში — ზეთისხილისფერი, ბორდო, ტერაკოტა, ოქროსფერი და შოკოლადისფერი.
-          </p>
           <div className="relative -mx-6 mt-6">
             <div className="animate-dance-sway origin-bottom">
               <img
-                src="/images/dancers.png"
+                src="/images/dancers-v2.png"
                 alt="მოცეკვავე სტუმრები შემოდგომის ფერის სამოსში"
                 loading="lazy"
                 className="animate-dance-bob mx-auto w-full max-w-lg"
