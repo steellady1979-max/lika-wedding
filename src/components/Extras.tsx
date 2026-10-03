@@ -56,42 +56,17 @@ export function AddToCalendar() {
     TITLE,
   )}&dates=${START}/${END}&details=${encodeURIComponent(DETAILS)}&location=${encodeURIComponent(LOCATION)}`;
 
-  function downloadIcs() {
-    const ics = [
-      "BEGIN:VCALENDAR",
-      "VERSION:2.0",
-      "PRODID:-//wedding//EN",
-      "BEGIN:VEVENT",
-      `UID:aneta-giorgi-20261031@wedding`,
-      `DTSTAMP:${START}`,
-      `DTSTART:${START}`,
-      `DTEND:${END}`,
-      `SUMMARY:${TITLE}`,
-      `DESCRIPTION:${DETAILS}`,
-      `LOCATION:${LOCATION}`,
-      "END:VEVENT",
-      "END:VCALENDAR",
-    ].join("\r\n");
-    const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "aneta-giorgi-wedding.ics";
-    a.click();
-    URL.revokeObjectURL(url);
-  }
-
-  const cls =
-    "inline-flex items-center gap-2 rounded-full border border-olive/30 bg-parchment/80 px-4 py-2 font-geo text-xs tracking-[0.12em] text-olive backdrop-blur-[2px] transition hover:bg-olive hover:text-parchment";
   return (
-    <div className="mt-5 flex flex-wrap justify-center gap-2">
-      <a href={google} target="_blank" rel="noreferrer" className={cls}>
+    <div className="mt-5 flex justify-center">
+      <a
+        href={google}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center gap-2 rounded-full border border-olive/30 bg-parchment/80 px-5 py-2.5 font-geo text-xs tracking-[0.12em] text-olive backdrop-blur-[2px] transition hover:bg-olive hover:text-parchment"
+      >
         <CalendarPlus className="h-3.5 w-3.5" strokeWidth={1.5} />
-        Google კალენდარი
+        დაამატე კალენდარში
       </a>
-      <button type="button" onClick={downloadIcs} className={cls}>
-        <CalendarPlus className="h-3.5 w-3.5" strokeWidth={1.5} />
-        Apple / სხვა
-      </button>
     </div>
   );
 }
