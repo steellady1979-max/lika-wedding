@@ -63,16 +63,33 @@ export function Schedule() {
                       რუკაზე ნახვა
                     </a>
                     {image && (
-                      <figure className="group mt-5 w-full max-w-[17rem] sm:max-w-xs">
-                        <div className="rounded-t-full border border-olive/40 bg-parchment p-1.5 shadow-soft">
-                          <div className="overflow-hidden rounded-t-full border border-olive/25">
-                            <img
-                              src={image}
-                              alt={alt}
-                              loading="lazy"
-                              className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                            />
+                      <figure className="group relative mt-8 w-full max-w-[15rem] sm:max-w-[17rem]">
+                        {/* Keystone ornament at the arch apex */}
+                        <div className="pointer-events-none absolute -top-4 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-olive/40 bg-parchment shadow-soft">
+                            <svg viewBox="0 0 24 24" className="h-4 w-4 text-olive" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
+                              <path d="M12 3c1.5 3 4.5 4.5 4.5 7.5a4.5 4.5 0 0 1-9 0C7.5 7.5 10.5 6 12 3Z" />
+                              <path d="M12 21v-6M9 18c1-1 2-1.5 3-1.5s2 .5 3 1.5" />
+                            </svg>
+                          </span>
+                        </div>
+                        <div className="rounded-t-full rounded-b-2xl border border-olive/45 bg-gradient-to-b from-parchment to-olive/5 p-2 shadow-[0_14px_30px_-12px_color-mix(in_oklab,var(--olive)_45%,transparent)]">
+                          <div className="rounded-t-full rounded-b-xl border border-dashed border-olive/30 p-1">
+                            <div className="relative overflow-hidden rounded-t-full rounded-b-lg ring-1 ring-olive/25">
+                              <img
+                                src={image}
+                                alt={alt}
+                                loading="lazy"
+                                className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                              />
+                              <div className="pointer-events-none absolute inset-0 rounded-t-full rounded-b-lg shadow-[inset_0_0_24px_rgba(60,50,30,0.18)]" />
+                            </div>
                           </div>
+                        </div>
+                        <div className="mx-auto mt-2 flex items-center justify-center gap-2 text-olive/60" aria-hidden="true">
+                          <span className="h-px w-8 bg-olive/40" />
+                          <span className="h-1.5 w-1.5 rotate-45 bg-olive/50" />
+                          <span className="h-px w-8 bg-olive/40" />
                         </div>
                       </figure>
                     )}
