@@ -8,6 +8,8 @@ const ITEMS: { time: string; icon: typeof Church; title: string; map: string; im
     icon: Church,
     title: "ჯვრისწერა — საგარეჯო, ნინოწმინდის მონასტერი",
     map: "https://maps.app.goo.gl/nCEMkXJLqwfCZTPY7",
+    image: "/images/church_monastery.jpg",
+    alt: "ნინოწმინდის მონასტერი, აკვარელი",
   },
   {
     time: "16:30",

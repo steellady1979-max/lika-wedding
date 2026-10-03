@@ -343,9 +343,9 @@ function CoupleImage() {
   return (
     <section className="bg-parchment px-0 pt-16 sm:px-6">
       <Reveal>
-        <figure className="relative mx-auto max-w-none sm:max-w-xl">
+        <figure className="relative mx-auto max-w-none px-4 sm:max-w-xl sm:px-0">
           <div
-            className="overflow-hidden border-y border-ink/10 shadow-soft sm:rounded-2xl sm:border"
+            className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-olive/20 bg-parchment shadow-soft ring-4 ring-olive/5"
             onTouchStart={(e) => (startX.current = e.touches[0]!.clientX)}
             onTouchEnd={(e) => {
               if (startX.current === null) return;
@@ -354,20 +354,26 @@ function CoupleImage() {
               startX.current = null;
             }}
           >
-            <div
-              className="flex transition-transform duration-700 ease-out"
-              style={{ transform: `translateX(-${i * 100}%)` }}
-            >
-              {COUPLE_PHOTOS.map((p) => (
-                <img key={p.src} src={p.src} alt={p.alt} loading="lazy" className="w-full shrink-0 object-cover" />
-              ))}
-            </div>
-          </div>
-          <button aria-label="წინა" onClick={() => go(-1)} className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-parchment/80 font-geo text-olive shadow-soft">‹</button>
-          <button aria-label="შემდეგი" onClick={() => go(1)} className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-parchment/80 font-geo text-olive shadow-soft">›</button>
-          <div className="mt-4 flex justify-center gap-2">
             {COUPLE_PHOTOS.map((p, k) => (
-              <button key={p.src} aria-label={`ფოტო ${k + 1}`} onClick={() => setI(k)} className={`h-2 rounded-full transition-all ${k === i ? "w-6 bg-olive" : "w-2 bg-ink/25"}`} />
+              <img
+                key={p.src}
+                src={p.src}
+                alt={p.alt}
+                loading={k === 0 ? "eager" : "lazy"}
+                className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1200ms] ease-out ${
+                  k === i ? "scale-100 opacity-100" : "scale-105 opacity-0"
+                }`}
+              />
+            ))}
+            <span className="absolute right-4 top-4 rounded-full bg-parchment/85 px-3 py-1 font-geo text-xs tracking-[0.2em] text-olive shadow-soft">
+              {i + 1} / {n}
+            </span>
+          </div>
+          <button aria-label="წინა" onClick={() => go(-1)} className="absolute left-6 top-[calc(50%-1rem)] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-olive/20 bg-parchment/90 font-geo text-xl text-olive shadow-soft transition hover:bg-olive hover:text-parchment sm:left-3">‹</button>
+          <button aria-label="შემდეგი" onClick={() => go(1)} className="absolute right-6 top-[calc(50%-1rem)] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-olive/20 bg-parchment/90 font-geo text-xl text-olive shadow-soft transition hover:bg-olive hover:text-parchment sm:right-3">›</button>
+          <div className="mt-5 flex justify-center gap-2">
+            {COUPLE_PHOTOS.map((p, k) => (
+              <button key={p.src} aria-label={`ფოტო ${k + 1}`} onClick={() => setI(k)} className={`h-2 rounded-full transition-all duration-500 ${k === i ? "w-8 bg-olive" : "w-2 bg-ink/25"}`} />
             ))}
           </div>
         </figure>
