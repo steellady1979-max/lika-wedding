@@ -6,6 +6,7 @@ import { Typewriter } from "@/components/Typewriter";
 import { Schedule } from "@/components/Schedule";
 import { Guestbook } from "@/components/Guestbook";
 import MusicPlayer from "@/components/MusicPlayer";
+import { AutumnLeaves, AddToCalendar } from "@/components/Extras";
 import { sendToGoogleSheets } from "@/lib/googleSheets";
 
 const panelImg = "/images/panel.jpg";
@@ -97,6 +98,7 @@ function Invitation() {
         </div>
       </div>
 
+      {open && <AutumnLeaves />}
       <MusicPlayer />
     </main>
   );
@@ -154,6 +156,7 @@ function Hero() {
         </div>
 
         <Countdown />
+        <AddToCalendar />
       </div>
     </section>
   );
@@ -333,66 +336,168 @@ const COUPLE_PHOTOS = [
 
 function CoupleImage() {
   const [i, setI] = useState(0);
+  const [drag, setDrag] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
   const startX = useRef<number | null>(null);
   const n = COUPLE_PHOTOS.length;
-  const go = (d: number) => setI((v) => (v + d + n) % n);
+  const go = useCallback((d: number) => setI((v) => (v + d + n) % n), [n]);
   useEffect(() => {
-    const id = window.setInterval(() => setI((v) => (v + 1) % n), 5000);
+    if (lightbox) return;
+    const id = window.setInterval(() => go(1), 6000);
     return () => window.clearInterval(id);
-  }, [i, n]);
+  }, [i, lightbox, go]);
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(false);
+      if (e.key === "ArrowRight") go(1);
+      if (e.key === "ArrowLeft") go(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightbox, go]);
+
+  const swipe = {
+    onTouchStart: (e: React.TouchEvent) => (startX.current = e.touches[0]!.clientX),
+    onTouchMove: (e: React.TouchEvent) => {
+      if (startX.current !== null) setDrag(e.touches[0]!.clientX - startX.current);
+    },
+    onTouchEnd: () => {
+      if (Math.abs(drag) > 50) go(drag < 0 ? 1 : -1);
+      setDrag(0);
+      startX.current = null;
+    },
+  };
+
   return (
-    <section className="bg-parchment px-0 pt-16 sm:px-6">
+    <section className="bg-parchment px-4 pt-16 sm:px-6">
       <Reveal>
-        <figure className="relative mx-auto max-w-none px-4 sm:max-w-xl sm:px-0">
-          <div
-            className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-olive/20 bg-parchment shadow-soft ring-4 ring-olive/5"
-            onTouchStart={(e) => (startX.current = e.touches[0]!.clientX)}
-            onTouchEnd={(e) => {
-              if (startX.current === null) return;
-              const dx = e.changedTouches[0]!.clientX - startX.current;
-              if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
-              startX.current = null;
-            }}
-          >
+        <div className="mx-auto max-w-md text-center">
+          <SparkleTitle className="font-geo text-2xl">ჩვენი მომენტები</SparkleTitle>
+          <div className="relative mx-auto mt-8 aspect-[4/5] w-[85%]" {...swipe}>
+            {COUPLE_PHOTOS.map((p, k) => {
+              const pos = (k - i + n) % n; // 0 = top
+              const rot = pos === 0 ? drag / 25 : pos === 1 ? 4 : -4;
+              const x = pos === 0 ? drag : pos === 1 ? 14 : -14;
+              return (
+                <button
+                  key={p.src}
+                  type="button"
+                  aria-label={`${p.alt} — გადიდება`}
+                  onClick={() => pos === 0 && setLightbox(true)}
+                  className={`absolute inset-0 overflow-hidden rounded-2xl border-[6px] border-parchment bg-parchment shadow-soft ${
+                    drag ? "" : "transition-all duration-700 ease-out"
+                  }`}
+                  style={{
+                    zIndex: n - pos,
+                    transform: `translateX(${x}px) rotate(${rot}deg) scale(${1 - pos * 0.04})`,
+                    opacity: pos > 2 ? 0 : 1,
+                  }}
+                >
+                  <img
+                    src={p.src}
+                    alt={p.alt}
+                    loading={k === 0 ? "eager" : "lazy"}
+                    draggable={false}
+                    className="h-full w-full object-cover"
+                  />
+                </button>
+              );
+            })}
+            <button aria-label="წინა" onClick={() => go(-1)} className="absolute -left-5 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-olive/20 bg-parchment/95 font-geo text-xl text-olive shadow-soft transition hover:bg-olive hover:text-parchment">‹</button>
+            <button aria-label="შემდეგი" onClick={() => go(1)} className="absolute -right-5 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-olive/20 bg-parchment/95 font-geo text-xl text-olive shadow-soft transition hover:bg-olive hover:text-parchment">›</button>
+          </div>
+          <div className="mt-6 flex justify-center gap-3">
             {COUPLE_PHOTOS.map((p, k) => (
-              <img
+              <button
                 key={p.src}
-                src={p.src}
-                alt={p.alt}
-                loading={k === 0 ? "eager" : "lazy"}
-                className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1200ms] ease-out ${
-                  k === i ? "scale-100 opacity-100" : "scale-105 opacity-0"
+                aria-label={`ფოტო ${k + 1}`}
+                onClick={() => setI(k)}
+                className={`h-16 w-14 overflow-hidden rounded-lg border-2 transition-all duration-500 ${
+                  k === i ? "scale-105 border-olive opacity-100" : "border-transparent opacity-50"
                 }`}
-              />
-            ))}
-            <span className="absolute right-4 top-4 rounded-full bg-parchment/85 px-3 py-1 font-geo text-xs tracking-[0.2em] text-olive shadow-soft">
-              {i + 1} / {n}
-            </span>
-          </div>
-          <button aria-label="წინა" onClick={() => go(-1)} className="absolute left-6 top-[calc(50%-1rem)] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-olive/20 bg-parchment/90 font-geo text-xl text-olive shadow-soft transition hover:bg-olive hover:text-parchment sm:left-3">‹</button>
-          <button aria-label="შემდეგი" onClick={() => go(1)} className="absolute right-6 top-[calc(50%-1rem)] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-olive/20 bg-parchment/90 font-geo text-xl text-olive shadow-soft transition hover:bg-olive hover:text-parchment sm:right-3">›</button>
-          <div className="mt-5 flex justify-center gap-2">
-            {COUPLE_PHOTOS.map((p, k) => (
-              <button key={p.src} aria-label={`ფოტო ${k + 1}`} onClick={() => setI(k)} className={`h-2 rounded-full transition-all duration-500 ${k === i ? "w-8 bg-olive" : "w-2 bg-ink/25"}`} />
+              >
+                <img src={p.src} alt="" loading="lazy" className="h-full w-full object-cover" />
+              </button>
             ))}
           </div>
-        </figure>
+          <p className="mt-3 font-geo text-[0.65rem] tracking-[0.2em] text-ink/50">
+            შეეხე ფოტოს გასადიდებლად
+          </p>
+        </div>
       </Reveal>
+
+      {lightbox && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/90 p-4 backdrop-blur-sm animate-fade-in"
+          onClick={() => setLightbox(false)}
+          {...swipe}
+        >
+          <img
+            src={COUPLE_PHOTOS[i]!.src}
+            alt={COUPLE_PHOTOS[i]!.alt}
+            className="max-h-[85vh] max-w-full rounded-xl object-contain shadow-soft"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button aria-label="დახურვა" onClick={() => setLightbox(false)} className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-parchment/90 font-geo text-xl text-olive">×</button>
+          <button aria-label="წინა" onClick={(e) => { e.stopPropagation(); go(-1); }} className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-parchment/90 font-geo text-xl text-olive">‹</button>
+          <button aria-label="შემდეგი" onClick={(e) => { e.stopPropagation(); go(1); }} className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-parchment/90 font-geo text-xl text-olive">›</button>
+          <span className="absolute bottom-6 font-geo text-xs tracking-[0.2em] text-parchment/80">{i + 1} / {n}</span>
+        </div>
+      )}
     </section>
   );
 }
 
+const DRESS_COLORS = [
+  { name: "ზეთისხილისფერი", c: "var(--olive)" },
+  { name: "ბორდო", c: "var(--wine)" },
+  { name: "ტერაკოტა", c: "oklch(0.58 0.13 40)" },
+  { name: "ოქროსფერი", c: "oklch(0.74 0.12 82)" },
+  { name: "შოკოლადისფერი", c: "oklch(0.38 0.06 50)" },
+];
+
 function DressCode() {
+  const [picked, setPicked] = useState<number | null>(null);
   return (
-    <section className="bg-parchment px-6 pt-16">
+    <section className="overflow-hidden bg-parchment px-6 pt-16">
       <Reveal>
-        <div className="mx-auto max-w-xl rounded-2xl border border-ink/10 bg-ink/5 p-7 text-center shadow-soft">
+        <div className="mx-auto max-w-xl text-center">
           <SparkleTitle className="font-geo text-2xl">დრესკოდი</SparkleTitle>
           <p className="mt-3 font-geo text-lg text-olive">შემოდგომის ფერები</p>
           <p className="mt-2 font-geo text-sm leading-relaxed text-ink/70">
             გთხოვთ, ჩაიცვათ შემოდგომის თბილ ტონებში — ზეთისხილისფერი, ბორდო, ტერაკოტა, ოქროსფერი და შოკოლადისფერი.
           </p>
-          <img src="/images/dresscode.png" alt="სტუმრები შემოდგომის ფერის სამოსში" loading="lazy" className="mx-auto mt-6 w-full max-w-sm rounded-xl border border-ink/10" />
+          <div className="relative -mx-6 mt-6">
+            <div className="animate-dance-sway origin-bottom">
+              <img
+                src="/images/dancers.png"
+                alt="მოცეკვავე სტუმრები შემოდგომის ფერის სამოსში"
+                loading="lazy"
+                className="animate-dance-bob mx-auto w-full max-w-lg"
+              />
+            </div>
+          </div>
+          <div className="mt-6 flex justify-center gap-3">
+            {DRESS_COLORS.map((d, k) => (
+              <button
+                key={d.name}
+                type="button"
+                aria-label={d.name}
+                onClick={() => setPicked(k)}
+                onMouseEnter={() => setPicked(k)}
+                className={`h-9 w-9 rounded-full border-2 border-parchment shadow-soft ring-1 ring-ink/10 transition-transform duration-300 ${
+                  picked === k ? "-translate-y-1 scale-110" : ""
+                }`}
+                style={{ background: d.c }}
+              />
+            ))}
+          </div>
+          <p className="mt-3 h-5 font-geo text-xs tracking-[0.2em] text-ink/60 transition-opacity">
+            {picked !== null ? DRESS_COLORS[picked]!.name : "შეეხე ფერს"}
+          </p>
         </div>
       </Reveal>
     </section>
