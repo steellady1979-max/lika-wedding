@@ -78,16 +78,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "გიორგი & ვიქტორია — ქორწილის მოწვევა" },
+      { title: "ანეტა & გიორგი — ქორწილის მოწვევა" },
       {
         name: "description",
-        content: "გიორგისა და ვიქტორიას ქორწილის მოწვევა — 4 ოქტომბერი, 2026.",
+        content: "ანეტასა და გიორგის ქორწილის მოწვევა — 31 ოქტომბერი, 2026.",
       },
-      { name: "author", content: "გიორგი და ვიქტორია" },
-      { property: "og:title", content: "გიორგი & ვიქტორია — ქორწილის მოწვევა" },
+      { name: "author", content: "ანეტა და გიორგი" },
+      { property: "og:title", content: "ანეტა & გიორგი — ქორწილის მოწვევა" },
       {
         property: "og:description",
-        content: "გიორგისა და ვიქტორიას ქორწილის მოწვევა — 4 ოქტომბერი, 2026.",
+        content: "ანეტასა და გიორგის ქორწილის მოწვევა — 31 ოქტომბერი, 2026.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/images/couple-giorgi-victoria.jpg" },

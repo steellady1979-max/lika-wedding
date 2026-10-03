@@ -19,12 +19,12 @@ const WEDDING_DATE = new Date("2026-10-04T16:00:00+04:00");
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "გიორგი & ვიქტორია — ქორწილის მოწვევა" },
+      { title: "ანეტა & გიორგი — ქორწილის მოწვევა" },
       {
         name: "description",
-        content: "გიორგი და ვიქტორია გეპატიჟებიან 4 ოქტომბერს, 2026 — განრიგი, ლოკაცია და RSVP.",
+        content: "ანეტა და გიორგი გეპატიჟებიან 4 ოქტომბერს, 2026 — განრიგი, ლოკაცია და RSVP.",
       },
-      { property: "og:title", content: "გიორგი & ვიქტორია — 4 ოქტომბერი, 2026" },
+      { property: "og:title", content: "ანეტა & გიორგი — 31 ოქტომბერი, 2026" },
       {
         property: "og:description",
         content: "ინტერაქტიული ქორწილის მოწვევა — განრიგი, ლოკაცია და RSVP.",
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/images/couple-giorgi-victoria.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "გიორგი & ვიქტორია — 4 ოქტომბერი, 2026" },
+      { name: "twitter:title", content: "ანეტა & გიორგი — 31 ოქტომბერი, 2026" },
       {
         name: "twitter:description",
         content: "ინტერაქტიული ქორწილის მოწვევა — განრიგი, ლოკაცია და RSVP.",
@@ -50,7 +50,7 @@ function Invitation() {
 
   return (
     <main className="relative min-h-screen bg-backdrop">
-      <h1 className="sr-only">გიორგი და ვიქტორია — ქორწილის მოწვევა, 4 ოქტომბერი, 2026</h1>
+      <h1 className="sr-only">ანეტა და გიორგი — ქორწილის მოწვევა, 31 ოქტომბერი, 2026</h1>
 
       <div
         className={`transition-all duration-[1600ms] ease-out ${
@@ -153,7 +153,7 @@ function Hero() {
           ვიქტორია
         </SparkleTitle>
         <div className="mt-8 rounded-full bg-parchment/70 px-6 py-3 backdrop-blur-[2px]">
-          <p className="font-geo text-sm tracking-[0.3em] text-ink/85">4 ოქტომბერი, 2026</p>
+          <p className="font-geo text-sm tracking-[0.3em] text-ink/85">31 ოქტომბერი, 2026</p>
         </div>
 
         <Countdown />
@@ -260,7 +260,7 @@ function EnvelopeSection() {
                   className="mt-2 font-geo text-[0.9rem] leading-[1.9] text-ink/85"
                 />
                 <Typewriter
-                  text="გიორგი & ვიქტორია"
+                  text="ანეტა & გიორგი"
                   speed={55}
                   startDelay={11000}
                   className="mt-4 font-geo text-[0.95rem] text-wine"
@@ -353,7 +353,7 @@ function CoupleImage() {
         <figure className="mx-auto max-w-none sm:max-w-xl">
           <img
             src={coupleImg}
-            alt="აკვარელით დახატული გიორგი და ვიქტორია ვარდებით"
+            alt="აკვარელით დახატული ანეტა და გიორგი ვარდებით"
             loading="lazy"
             className="w-full rounded-none border-y border-ink/10 shadow-soft sm:rounded-2xl sm:border"
           />
