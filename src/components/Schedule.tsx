@@ -44,7 +44,9 @@ export function Schedule() {
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-olive/20 bg-olive/10">
                       <Icon className="h-4 w-4 text-olive" strokeWidth={1.5} />
                     </span>
-                    {i < ITEMS.length - 1 && <span className="mt-1 w-px flex-1 bg-ink/15" />}
+                    {i < ITEMS.length - 1 && (
+                      <span className="mt-1 w-0 flex-1 border-l-2 border-dotted border-olive/40" />
+                    )}
                   </div>
                   <div className="min-w-0 flex-1 pb-1 pr-5 sm:pr-0">
                     <p className="font-geo text-xs tracking-[0.25em] text-ink/55">{time}</p>
