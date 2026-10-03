@@ -460,40 +460,63 @@ const DRESS_COLORS = [
 
 function DressCode() {
   const [picked, setPicked] = useState<number | null>(null);
+  const active = picked !== null ? DRESS_COLORS[picked]! : null;
   return (
-    <section className="overflow-hidden bg-parchment px-6 pt-16">
+    <section className="overflow-hidden bg-parchment px-6 pt-14">
       <Reveal>
-        <div className="mx-auto max-w-xl text-center">
+        <div className="mx-auto max-w-md text-center">
           <SparkleTitle className="font-geo text-2xl">დრესკოდი</SparkleTitle>
-          <p className="mt-3 font-geo text-lg text-olive">შემოდგომის ფერები</p>
-          <div className="relative -mx-6 mt-6">
-            <div className="animate-dance-sway origin-bottom">
+          <p className="mt-2 font-geo text-base text-olive">შემოდგომის ფერები</p>
+
+          <div className="relative mx-auto mt-2 w-full max-w-[18.5rem] sm:max-w-xs">
+            <div
+              aria-hidden
+              className="absolute inset-x-5 bottom-1 h-12 rounded-[50%] bg-olive/12 blur-2xl"
+            />
+            <div className="animate-dance-sway relative origin-bottom">
               <img
                 src="/images/dancers-v2.png"
                 alt="მოცეკვავე სტუმრები შემოდგომის ფერის სამოსში"
                 loading="lazy"
-                className="animate-dance-bob mx-auto w-full max-w-lg"
+                className="animate-dance-bob mx-auto block w-full"
               />
             </div>
           </div>
-          <div className="mt-6 flex justify-center gap-3">
+
+          <div className="mt-3 flex items-center justify-center gap-2.5">
             {DRESS_COLORS.map((d, k) => (
               <button
                 key={d.name}
                 type="button"
                 aria-label={d.name}
+                aria-pressed={picked === k}
                 onClick={() => setPicked(k)}
                 onMouseEnter={() => setPicked(k)}
-                className={`h-9 w-9 rounded-full border-2 border-parchment shadow-soft ring-1 ring-ink/10 transition-transform duration-300 ${
-                  picked === k ? "-translate-y-1 scale-110" : ""
+                onFocus={() => setPicked(k)}
+                className={`h-8 w-8 rounded-full border-2 border-parchment shadow-soft outline-none ring-1 ring-ink/10 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-olive/70 focus-visible:ring-offset-2 focus-visible:ring-offset-parchment ${
+                  picked === k
+                    ? "-translate-y-1 scale-110 ring-2 ring-olive/45"
+                    : "hover:-translate-y-0.5"
                 }`}
                 style={{ background: d.c }}
               />
             ))}
           </div>
-          <p className="mt-3 h-5 font-geo text-xs tracking-[0.2em] text-ink/60 transition-opacity">
-            {picked !== null ? DRESS_COLORS[picked]!.name : "შეეხე ფერს"}
-          </p>
+
+          <div className="mt-3 flex h-7 items-center justify-center">
+            {active ? (
+              <span className="inline-flex items-center gap-2 rounded-full border border-olive/25 bg-parchment px-3 py-1 font-geo text-xs tracking-[0.18em] text-ink/75 shadow-soft">
+                <span
+                  aria-hidden
+                  className="h-2 w-2 rounded-full"
+                  style={{ background: active.c }}
+                />
+                {active.name}
+              </span>
+            ) : (
+              <span className="font-geo text-xs tracking-[0.2em] text-ink/45">შეეხე ფერს</span>
+            )}
+          </div>
         </div>
       </Reveal>
     </section>
