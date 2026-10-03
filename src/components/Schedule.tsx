@@ -24,6 +24,8 @@ const ITEMS: { time: string; icon: typeof Church; title: string; map: string; im
     icon: UtensilsCrossed,
     title: "ვახშამი — მანავი, გიუაანი მეღვინეობა",
     map: "https://maps.app.goo.gl/ncv15eDxJQcHkNZV8",
+    image: "/images/giuaani-table.jpg",
+    alt: "ვახშამის მაგიდა გიუაანი მეღვინეობაში, აკვარელი",
   },
 ];
 
