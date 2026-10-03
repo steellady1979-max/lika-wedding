@@ -466,3 +466,26 @@
     100% { transform: rotateX(0deg); }
   }
 }
+
+@keyframes dance-sway {
+  0%, 100% { transform: translateX(-2%) rotate(-0.6deg); }
+  50% { transform: translateX(2%) rotate(0.6deg); }
+}
+@keyframes dance-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes leaf-fall {
+  0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.6; }
+  100% { transform: translate3d(8vw, 110vh, 0) rotate(540deg); opacity: 0; }
+}
+@keyframes vinyl-spin { to { transform: rotate(360deg); } }
+@utility animate-dance-sway { animation: dance-sway 4s ease-in-out infinite; }
+@utility animate-dance-bob { animation: dance-bob 1.8s ease-in-out infinite; }
+@utility animate-leaf-fall { animation: leaf-fall linear infinite; }
+@utility animate-vinyl { animation: vinyl-spin 4s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-dance-sway, .animate-dance-bob, .animate-leaf-fall, .animate-vinyl { animation: none; }
+}
