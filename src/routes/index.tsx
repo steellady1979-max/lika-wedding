@@ -58,11 +58,12 @@ function Invitation() {
       >
         <Hero />
         <EnvelopeSection />
-        <Schedule />
-        <Guestbook />
         <CoupleImage />
+        <Schedule />
         <DressCode />
         <Rsvp />
+        <Guestbook />
+        <Footer />
       </div>
 
       {/* Doors */}
@@ -447,6 +448,22 @@ function CoupleImage() {
         </div>
       )}
     </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="bg-parchment px-6 pb-28 pt-16 text-center">
+      <div className="mx-auto flex max-w-xs items-center justify-center gap-3" aria-hidden="true">
+        <span className="h-px flex-1 bg-olive/35" />
+        <span className="h-1.5 w-1.5 rotate-45 bg-olive/60" />
+        <span className="h-px flex-1 bg-olive/35" />
+      </div>
+      <p className="mt-8 font-geo text-4xl text-olive">ა &amp; გ</p>
+      <p className="mt-5 font-geo text-sm tracking-[0.2em] text-ink/70">
+        გელოდებით დიდი სიყვარულით
+      </p>
+    </footer>
   );
 }
 
