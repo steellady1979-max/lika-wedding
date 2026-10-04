@@ -39,7 +39,7 @@ export function Schedule() {
     if (!el) return;
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
+        if (e?.isIntersecting) {
           setDrawn(true);
           io.disconnect();
         }
