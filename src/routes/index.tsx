@@ -496,13 +496,13 @@ function DressCode() {
   const [picked, setPicked] = useState<number | null>(null);
   const active = picked !== null ? DRESS_COLORS[picked]! : null;
   return (
-    <section className="overflow-hidden bg-parchment px-6 pt-14">
+    <section className="overflow-hidden bg-parchment px-6 py-20">
       <Reveal>
         <div className="mx-auto max-w-md text-center">
           <SparkleTitle className="font-geo text-2xl">დრესკოდი</SparkleTitle>
-          <p className="mt-2 font-geo text-base text-olive">შემოდგომის ფერები</p>
+          <p className="mt-3 font-geo text-base text-olive">შემოდგომის ფერები</p>
 
-          <div className="relative mx-auto mt-2 w-full max-w-[18.5rem] sm:max-w-xs">
+          <div className="relative mx-auto mt-10 w-full max-w-[18.5rem] sm:max-w-xs">
             <div
               aria-hidden
               className="absolute inset-x-5 bottom-1 h-12 rounded-[50%] bg-olive/12 blur-2xl"
@@ -517,7 +517,7 @@ function DressCode() {
             </div>
           </div>
 
-          <div className="mt-3 flex items-center justify-center gap-2.5">
+          <div className="mt-10 flex items-center justify-center gap-4">
             {DRESS_COLORS.map((d, k) => (
               <button
                 key={d.name}
@@ -537,7 +537,7 @@ function DressCode() {
             ))}
           </div>
 
-          <div className="mt-3 flex h-7 items-center justify-center">
+          <div className="mt-5 flex h-7 items-center justify-center">
             {active ? (
               <span className="inline-flex items-center gap-2 rounded-full border border-olive/25 bg-parchment px-3 py-1 font-geo text-xs tracking-[0.18em] text-ink/75 shadow-soft">
                 <span
@@ -559,24 +559,17 @@ function DressCode() {
 
 function RsvpForm({ onSent }: { onSent: (attending: boolean) => void }) {
   const [name, setName] = useState("");
-  const [additionalGuestNames, setAdditionalGuestNames] = useState("");
-  const [attendanceChoice, setAttendanceChoice] = useState("0");
+  const [allergies, setAllergies] = useState("");
+  const [attendanceChoice, setAttendanceChoice] = useState("yes");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const attending = attendanceChoice !== "no";
-  const additionalGuests = attending ? Number(attendanceChoice) : 0;
-  const showAdditionalGuests = additionalGuests > 0;
+  const attending = attendanceChoice === "yes";
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     const fullName = name.trim();
     if (fullName.length < 2 || fullName.length > 120) {
       setError("გთხოვთ, მიუთითოთ სახელი და გვარი");
-      return;
-    }
-    const guestNames = additionalGuestNames.trim();
-    if (showAdditionalGuests && guestNames.length < 2) {
-      setError("გთხოვთ, მიუთითოთ დამატებითი სტუმრების სახელები და გვარები");
       return;
     }
     setBusy(true);
@@ -589,8 +582,7 @@ function RsvpForm({ onSent }: { onSent: (attending: boolean) => void }) {
         responseId,
         fullName,
         attending,
-        additionalGuests,
-        additionalGuestNames: showAdditionalGuests ? guestNames : "",
+        allergies: attending ? allergies.trim().slice(0, 500) : "",
       });
     } catch (error) {
       sheetError = error;
@@ -629,41 +621,27 @@ function RsvpForm({ onSent }: { onSent: (attending: boolean) => void }) {
           id="attending"
           name="attending"
           value={attendanceChoice}
-          onChange={(e) => {
-            setAttendanceChoice(e.target.value);
-            if (e.target.value === "0" || e.target.value === "no") {
-              setAdditionalGuestNames("");
-            }
-          }}
+          onChange={(e) => setAttendanceChoice(e.target.value)}
           className="mt-1 w-full rounded-lg border border-ink/15 bg-parchment px-4 py-3 font-geo text-sm text-ink outline-none focus:border-olive"
         >
-          <option value="0">დიახ, ვიქნები</option>
-          <option value="1">დიახ, +1 სტუმართან ერთად</option>
-          <option value="2">დიახ, +2 სტუმართან ერთად</option>
-          <option value="3">დიახ, +3 სტუმართან ერთად</option>
-          <option value="4">დიახ, +4 სტუმართან ერთად</option>
-          <option value="5">დიახ, +5 სტუმართან ერთად</option>
+          <option value="yes">დიახ, დავესწრები</option>
           <option value="no">სამწუხაროდ, ვერ შევძლებ</option>
         </select>
       </div>
 
-      {showAdditionalGuests && (
+      {attending && (
         <div className="animate-fade-in">
-          <label
-            htmlFor="additionalGuestNames"
-            className="font-geo text-xs tracking-[0.2em] text-ink/60"
-          >
-            + სტუმრების სახელები და გვარები
+          <label htmlFor="allergies" className="font-geo text-xs tracking-[0.2em] text-ink/60">
+            ალერგია ან კვებითი შეზღუდვა
           </label>
           <textarea
-            id="additionalGuestNames"
-            name="additionalGuestNames"
-            required
-            rows={Math.min(additionalGuests + 1, 5)}
-            maxLength={600}
-            value={additionalGuestNames}
-            onChange={(e) => setAdditionalGuestNames(e.target.value)}
-            placeholder="ჩაწერეთ თითოეული სტუმრის სახელი და გვარი ახალ ხაზზე"
+            id="allergies"
+            name="allergies"
+            rows={2}
+            maxLength={500}
+            value={allergies}
+            onChange={(e) => setAllergies(e.target.value)}
+            placeholder="მაგ.: თხილი, ლაქტოზა, ვეგეტარიანული... (არასავალდებულო)"
             className="mt-1 w-full rounded-lg border border-ink/15 bg-parchment px-4 py-3 font-geo text-sm text-ink outline-none focus:border-olive"
           />
         </div>
