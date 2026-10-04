@@ -268,7 +268,7 @@ function EnvelopeSection() {
 
           {/* flap */}
           <div
-            className={`pointer-events-none absolute inset-0 origin-top transition-transform duration-[1000ms] ease-out ${
+            className={`pointer-events-none absolute inset-0 origin-top transition-transform duration-[1300ms] ease-[cubic-bezier(0.65,0,0.35,1)] ${
               opened ? "z-0 [transform:rotateX(-165deg)]" : "z-30"
             }`}
             style={{ transformStyle: "preserve-3d" }}
@@ -324,8 +324,9 @@ function Rsvp() {
                   return (
                     <span
                       key={k}
-                      className="sparkle-burst absolute text-[0.7rem] text-gold"
+                      className="sparkle-burst absolute text-[0.7rem]"
                       style={{
+                        color: "oklch(0.74 0.12 82)",
                         ["--dx" as string]: `${Math.cos(a) * d}px`,
                         ["--dy" as string]: `${Math.sin(a) * d}px`,
                         animationDelay: `${(k % 4) * 60}ms`,
