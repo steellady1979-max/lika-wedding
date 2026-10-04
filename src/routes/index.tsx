@@ -14,27 +14,27 @@ const bowImg = "/images/bow.png";
 const archImg = "/images/arch.jpg";
 const envelopeImg = "/images/envelope.png";
 const WEDDING_DATE = new Date("2026-10-31T14:00:00+04:00");
+const OG_IMAGE =
+  "https://project--29d3676c-79dc-4353-9774-21b5d96eb7be.lovable.app/images/og-share.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ანეტა & გიორგი — ქორწილის მოწვევა" },
+      { title: "გეპატიჟებით ჩვენს ქორწილში — ანეტა & გიორგი" },
       {
         name: "description",
-        content: "ანეტა და გიორგი გეპატიჟებიან 31 ოქტომბერს, 2026 — განრიგი, ლოკაცია და RSVP.",
+        content: "ანეტა & გიორგი · 31 ოქტომბერი, 2026",
       },
-      { property: "og:title", content: "ანეტა & გიორგი — 31 ოქტომბერი, 2026" },
-      {
-        property: "og:description",
-        content: "ინტერაქტიული ქორწილის მოწვევა — განრიგი, ლოკაცია და RSVP.",
-      },
+      { property: "og:title", content: "გეპატიჟებით ჩვენს ქორწილში" },
+      { property: "og:description", content: "ანეტა & გიორგი · 31 ოქტომბერი, 2026" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "ანეტა & გიორგი — 31 ოქტომბერი, 2026" },
-      {
-        name: "twitter:description",
-        content: "ინტერაქტიული ქორწილის მოწვევა — განრიგი, ლოკაცია და RSVP.",
-      },
+      { name: "twitter:title", content: "გეპატიჟებით ჩვენს ქორწილში" },
+      { name: "twitter:description", content: "ანეტა & გიორგი · 31 ოქტომბერი, 2026" },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
   }),
   component: Invitation,
