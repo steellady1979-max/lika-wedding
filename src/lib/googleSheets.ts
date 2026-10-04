@@ -3,8 +3,7 @@ type RsvpSheetPayload = {
   responseId: string;
   fullName: string;
   attending: boolean;
-  additionalGuests: number;
-  additionalGuestNames: string;
+  allergies: string;
 };
 
 type WishSheetPayload = {
