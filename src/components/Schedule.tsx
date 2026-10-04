@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
 import { SparkleTitle } from "./SparkleTitle";
 import { Church, MapPin, PenLine, UtensilsCrossed } from "lucide-react";
@@ -72,7 +73,7 @@ export function Schedule() {
                       }}
                     />
                     {i === ITEMS.length - 1 && (
-                      <span className="mb-2 mt-1 flex flex-col items-center gap-1" aria-hidden="true">
+                      <span className="mb-2 mt-1 flex flex-col items-center gap-1" aria-hidden="true" style={{ opacity: drawn ? 1 : 0, transition: `opacity 600ms ease ${ITEMS.length * SEG}ms` }}>
                         <span className="h-2.5 w-2.5 rotate-45 border border-olive/60 bg-olive/70" />
                         <span className="h-1 w-1 rounded-full bg-olive/40" />
                       </span>
