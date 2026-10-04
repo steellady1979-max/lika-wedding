@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
 import { SparkleTitle } from "./SparkleTitle";
 import { Church, MapPin, PenLine, UtensilsCrossed } from "lucide-react";
@@ -31,6 +32,24 @@ const ITEMS: { time: string; icon: typeof Church; title: string; map: string; im
 
 
 export function Schedule() {
+  const listRef = useRef<HTMLOListElement>(null);
+  const [drawn, setDrawn] = useState(false);
+  useEffect(() => {
+    const el = listRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e?.isIntersecting) {
+          setDrawn(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.15 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  const SEG = 1400;
   return (
     <section className="bg-backdrop px-0 pb-4 sm:px-6">
       <div className="mx-auto max-w-none sm:max-w-3xl">
@@ -39,16 +58,22 @@ export function Schedule() {
             <div className="px-5 sm:px-0">
               <SparkleTitle className="font-geo text-lg tracking-[0.15em]">დღის განრიგი</SparkleTitle>
             </div>
-            <ol className="mt-6 grid gap-5">
+            <ol ref={listRef} className="mt-6 grid gap-5">
               {ITEMS.map(({ time, icon: Icon, title, map, image, alt }, i) => (
                 <li key={time} className="relative flex gap-4">
                   <div className="flex flex-col items-center pl-5 sm:pl-1">
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-olive/20 bg-olive/10">
                       <Icon className="h-4 w-4 text-olive" strokeWidth={1.5} />
                     </span>
-                    <span className="mt-1 w-0 flex-1 border-l-2 border-dotted border-olive/40" />
+                    <span
+                      className="mt-1 w-0 flex-1 origin-top border-l-2 border-dotted border-olive/40 motion-reduce:!scale-y-100"
+                      style={{
+                        transform: drawn ? "scaleY(1)" : "scaleY(0)",
+                        transition: `transform ${SEG}ms ease-in-out ${i * SEG}ms`,
+                      }}
+                    />
                     {i === ITEMS.length - 1 && (
-                      <span className="mb-2 mt-1 flex flex-col items-center gap-1" aria-hidden="true">
+                      <span className="mb-2 mt-1 flex flex-col items-center gap-1" aria-hidden="true" style={{ opacity: drawn ? 1 : 0, transition: `opacity 600ms ease ${ITEMS.length * SEG}ms` }}>
                         <span className="h-2.5 w-2.5 rotate-45 border border-olive/60 bg-olive/70" />
                         <span className="h-1 w-1 rounded-full bg-olive/40" />
                       </span>

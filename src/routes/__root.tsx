@@ -84,15 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "ანეტასა და გიორგის ქორწილის მოწვევა — 31 ოქტომბერი, 2026.",
       },
       { name: "author", content: "ანეტა და გიორგი" },
-      { property: "og:title", content: "ანეტა & გიორგი — ქორწილის მოწვევა" },
-      {
-        property: "og:description",
-        content: "ანეტასა და გიორგის ქორწილის მოწვევა — 31 ოქტომბერი, 2026.",
-      },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "/images/couple-giorgi-victoria.jpg" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "/images/couple-giorgi-victoria.jpg" },
       { name: "theme-color", content: "#6f263d" },
     ],
     links: [
