@@ -469,7 +469,6 @@ function CoupleImage() {
                 </button>
               );
             })}
-            <span aria-hidden className="absolute left-[58%] top-[46%] z-30 font-script text-3xl text-olive">♡</span>
           </div>
           <p className="mt-6 font-geo text-[0.65rem] tracking-[0.2em] text-ink/50">
             შეეხე ფოტოს გასადიდებლად
