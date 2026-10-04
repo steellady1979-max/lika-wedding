@@ -357,7 +357,7 @@ function ChildhoodPhoto() {
               <p className="font-script text-2xl leading-tight text-olive">საიდან დაიწყო ყველაფერი...</p>
               <div className="mt-2 flex items-center justify-center gap-2" aria-hidden="true">
                 <span className="h-px w-8 bg-olive/40" />
-                <span className="h-1.5 w-1.5 rotate-45 bg-burgundy/60" />
+                <span className="h-1.5 w-1.5 rotate-45 bg-olive/60" />
                 <span className="h-px w-8 bg-olive/40" />
               </div>
             </figcaption>
