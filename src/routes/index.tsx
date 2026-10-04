@@ -336,14 +336,31 @@ const COUPLE_PHOTOS = [
 
 function ChildhoodPhoto() {
   return (
-    <section className="bg-parchment px-6 pt-16">
+    <section className="bg-parchment px-8 pt-8 pb-4">
       <Reveal>
-        <figure className="mx-auto max-w-sm text-center">
-          <p className="font-script text-2xl text-olive">საიდან დაიწყო ყველაფერი...</p>
-          <div className="mt-5 rotate-[-1.5deg] rounded-2xl border border-olive/30 bg-parchment p-2 shadow-soft">
-            <div className="overflow-hidden rounded-xl border-[5px] border-parchment ring-1 ring-olive/20">
-              <img src="/images/perfect_2.jpg" alt="ანეტა და გიორგი — ბავშვობის ფოტოები" className="w-full object-cover" />
+        <figure className="group relative mx-auto max-w-[19rem]">
+          {/* washi tape */}
+          <span
+            aria-hidden="true"
+            className="absolute -top-3 left-1/2 z-10 h-7 w-28 -translate-x-1/2 rotate-[-4deg] rounded-[2px] bg-olive/25 shadow-sm backdrop-blur-[1px] [mask-image:linear-gradient(90deg,transparent_0,#000_6%,#000_94%,transparent_100%)]"
+          />
+          <div className="rotate-[-2deg] bg-[color-mix(in_oklab,var(--parchment)_88%,white)] p-3 pb-5 shadow-[0_18px_36px_-14px_color-mix(in_oklab,var(--olive)_55%,transparent)] ring-1 ring-olive/20 transition-transform duration-500 ease-out group-hover:rotate-0 group-active:rotate-0">
+            <div className="relative overflow-hidden ring-1 ring-olive/25">
+              <img
+                src="/images/perfect_2.jpg"
+                alt="ანეტა და გიორგი — ბავშვობის ფოტოები"
+                className="aspect-[4/5] w-full object-cover object-center sepia-[.15] transition duration-700 group-hover:scale-[1.03] group-hover:sepia-0"
+              />
+              <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_30px_rgba(60,50,30,0.22)]" />
             </div>
+            <figcaption className="mt-4 text-center">
+              <p className="font-script text-2xl leading-tight text-olive">საიდან დაიწყო ყველაფერი...</p>
+              <div className="mt-2 flex items-center justify-center gap-2" aria-hidden="true">
+                <span className="h-px w-8 bg-olive/40" />
+                <span className="h-1.5 w-1.5 rotate-45 bg-olive/60" />
+                <span className="h-px w-8 bg-olive/40" />
+              </div>
+            </figcaption>
           </div>
         </figure>
       </Reveal>
