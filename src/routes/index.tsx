@@ -217,8 +217,8 @@ function EnvelopeSection() {
 
           {/* letter */}
           <div
-            className={`absolute inset-x-[7%] top-0 z-10 rounded-sm border border-ink/10 bg-[oklch(0.98_0.012_92)] px-6 py-8 text-center shadow-soft transition-all duration-[1200ms] ease-out ${
-              opened ? "-translate-y-[92%] opacity-100" : "translate-y-4 opacity-0"
+            className={`absolute inset-x-[7%] top-0 z-10 rounded-sm border border-ink/10 bg-[oklch(0.98_0.012_92)] px-6 py-8 text-center shadow-soft transition-all duration-[1600ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              opened ? "-translate-y-[92%] rotate-0 opacity-100 delay-500" : "translate-y-4 -rotate-2 opacity-0"
             }`}
           >
             {opened ? (
@@ -268,7 +268,7 @@ function EnvelopeSection() {
 
           {/* flap */}
           <div
-            className={`pointer-events-none absolute inset-0 origin-top transition-transform duration-[1000ms] ease-out ${
+            className={`pointer-events-none absolute inset-0 origin-top transition-transform duration-[1300ms] ease-[cubic-bezier(0.65,0,0.35,1)] ${
               opened ? "z-0 [transform:rotateX(-165deg)]" : "z-30"
             }`}
             style={{ transformStyle: "preserve-3d" }}
@@ -315,11 +315,31 @@ function Rsvp() {
         </div>
 
         {attending !== null ? (
-          <div className="mt-10">
+          <div className="relative mt-10">
+            {attending && (
+              <div aria-hidden className="pointer-events-none absolute left-1/2 top-3 motion-reduce:hidden">
+                {Array.from({ length: 14 }).map((_, k) => {
+                  const a = (k / 14) * Math.PI * 2;
+                  const d = 60 + (k % 3) * 22;
+                  return (
+                    <span
+                      key={k}
+                      className="sparkle-burst absolute text-[0.7rem]"
+                      style={{
+                        color: "oklch(0.74 0.12 82)",
+                        ["--dx" as string]: `${Math.cos(a) * d}px`,
+                        ["--dy" as string]: `${Math.sin(a) * d}px`,
+                        animationDelay: `${(k % 4) * 60}ms`,
+                      }}
+                    >✦</span>
+                  );
+                })}
+              </div>
+            )}
             <p className="font-geo text-lg text-ink">
               {attending ? "გმადლობთ, გელოდებით სიყვარულით" : "მადლობა პასუხისთვის"}
             </p>
-            {attending && <AddToCalendar />}
+            {attending && <div className="animate-fade-in [animation-delay:600ms] [animation-fill-mode:both]"><div className="animate-soft-pulse"><AddToCalendar /></div></div>}
           </div>
         ) : (
           <RsvpForm onSent={(a) => setAttending(a)} />
@@ -372,14 +392,29 @@ function CoupleImage() {
   const [i, setI] = useState(0);
   const [drag, setDrag] = useState(0);
   const [lightbox, setLightbox] = useState(false);
+  const [par, setPar] = useState(0);
+  const [tilt, setTilt] = useState<{ k: number; x: number; y: number } | null>(null);
+  const secRef = useRef<HTMLElement>(null);
   const startX = useRef<number | null>(null);
   const n = COUPLE_PHOTOS.length;
   const go = useCallback((d: number) => setI((v) => (v + d + n) % n), [n]);
   useEffect(() => {
-    if (lightbox) return;
-    const id = window.setInterval(() => go(1), 6000);
-    return () => window.clearInterval(id);
-  }, [i, lightbox, go]);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const el = secRef.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        const p = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
+        setPar(Math.max(-1, Math.min(1, p)));
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf); };
+  }, []);
   useEffect(() => {
     if (!lightbox) return;
     const onKey = (e: KeyboardEvent) => {
@@ -404,58 +439,39 @@ function CoupleImage() {
   };
 
   return (
-    <section className="bg-parchment px-4 pt-16 sm:px-6">
+    <section ref={secRef} className="bg-parchment px-4 pt-16 sm:px-6">
       <Reveal>
         <div className="mx-auto max-w-md text-center">
           <SparkleTitle className="font-geo text-2xl">ჩვენი მომენტები</SparkleTitle>
-          <div className="relative mx-auto mt-8 aspect-[4/5] w-[85%]" {...swipe}>
+          <div className="relative mx-auto mt-10 h-[26rem] w-full max-w-[22rem]">
             {COUPLE_PHOTOS.map((p, k) => {
-              const pos = (k - i + n) % n; // 0 = top
-              const rot = pos === 0 ? drag / 25 : pos === 1 ? 4 : -4;
-              const x = pos === 0 ? drag : pos === 1 ? 14 : -14;
+              const left = k === 0;
+              const shift = (left ? -1 : 1) * par * 18;
               return (
                 <button
                   key={p.src}
                   type="button"
                   aria-label={`${p.alt} — გადიდება`}
-                  onClick={() => pos === 0 && setLightbox(true)}
-                  className={`absolute inset-0 overflow-hidden rounded-2xl border-[6px] border-parchment bg-parchment shadow-soft ${
-                    drag ? "" : "transition-all duration-700 ease-out"
+                  onClick={() => { setI(k); setLightbox(true); }}
+                  onPointerMove={(e) => {
+                    const r = e.currentTarget.getBoundingClientRect();
+                    setTilt({ k, x: (e.clientX - r.left) / r.width - 0.5, y: (e.clientY - r.top) / r.height - 0.5 });
+                  }}
+                  onPointerLeave={() => setTilt(null)}
+                  className={`absolute w-[62%] overflow-hidden rounded-xl border-[6px] border-parchment bg-parchment shadow-soft transition-transform duration-300 ease-out ${
+                    left ? "left-0 top-0 z-10" : "bottom-0 right-0 z-20"
                   }`}
                   style={{
-                    zIndex: n - pos,
-                    transform: `translateX(${x}px) rotate(${rot}deg) scale(${1 - pos * 0.04})`,
-                    opacity: pos > 2 ? 0 : 1,
+                    transform: `translateY(${shift}px) rotate(${left ? -4 : 3}deg) perspective(800px) rotateY(${tilt?.k === k ? tilt.x * 10 : 0}deg) rotateX(${tilt?.k === k ? -tilt.y * 10 : 0}deg)`,
                   }}
                 >
-                  <img
-                    src={p.src}
-                    alt={p.alt}
-                    loading={k === 0 ? "eager" : "lazy"}
-                    draggable={false}
-                    className="h-full w-full object-cover"
-                  />
+                  <img src={p.src} alt={p.alt} loading="lazy" draggable={false} className="aspect-[4/5] w-full object-cover" />
                 </button>
               );
             })}
-            <button aria-label="წინა" onClick={() => go(-1)} className="absolute -left-5 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-olive/20 bg-parchment/95 font-geo text-xl text-olive shadow-soft transition hover:bg-olive hover:text-parchment">‹</button>
-            <button aria-label="შემდეგი" onClick={() => go(1)} className="absolute -right-5 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-olive/20 bg-parchment/95 font-geo text-xl text-olive shadow-soft transition hover:bg-olive hover:text-parchment">›</button>
+            <span aria-hidden className="absolute left-[58%] top-[46%] z-30 font-script text-3xl text-olive">♡</span>
           </div>
-          <div className="mt-6 flex justify-center gap-3">
-            {COUPLE_PHOTOS.map((p, k) => (
-              <button
-                key={p.src}
-                aria-label={`ფოტო ${k + 1}`}
-                onClick={() => setI(k)}
-                className={`h-16 w-14 overflow-hidden rounded-lg border-2 transition-all duration-500 ${
-                  k === i ? "scale-105 border-olive opacity-100" : "border-transparent opacity-50"
-                }`}
-              >
-                <img src={p.src} alt="" loading="lazy" className="h-full w-full object-cover" />
-              </button>
-            ))}
-          </div>
-          <p className="mt-3 font-geo text-[0.65rem] tracking-[0.2em] text-ink/50">
+          <p className="mt-6 font-geo text-[0.65rem] tracking-[0.2em] text-ink/50">
             შეეხე ფოტოს გასადიდებლად
           </p>
         </div>
@@ -522,7 +538,13 @@ function DressCode() {
           <div className="relative mx-auto mt-10 w-full max-w-[18.5rem] sm:max-w-xs">
             <div
               aria-hidden
-              className="absolute inset-x-5 bottom-1 h-12 rounded-[50%] bg-olive/12 blur-2xl"
+              className="absolute -inset-x-4 inset-y-2 rounded-[50%] blur-3xl transition-all duration-700 ease-out"
+              style={{
+                background: active
+                  ? `color-mix(in oklab, ${active.c} 38%, transparent)`
+                  : "color-mix(in oklab, var(--olive) 12%, transparent)",
+                transform: active ? "scale(1.05)" : "scale(0.85)",
+              }}
             />
             <div className="animate-dance-sway relative origin-bottom">
               <img
