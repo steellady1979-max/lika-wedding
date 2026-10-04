@@ -57,10 +57,11 @@ function Invitation() {
         }`}
       >
         <Hero />
+        <ChildhoodPhoto />
         <EnvelopeSection />
-        <CoupleImage />
         <Schedule />
         <DressCode />
+        <CoupleImage />
         <Rsvp />
         <Guestbook />
         <Footer />
@@ -329,10 +330,26 @@ function Rsvp() {
 }
 
 const COUPLE_PHOTOS = [
-  { src: "/images/perfect_2.jpg", alt: "ანეტა და გიორგი — ბავშვობის ფოტოები" },
   { src: "/images/couple_2.jpg", alt: "ანეტა და გიორგი აივანზე" },
   { src: "/images/couple_1.jpg", alt: "ანეტა და გიორგი ვარდებით" },
 ];
+
+function ChildhoodPhoto() {
+  return (
+    <section className="bg-parchment px-6 pt-16">
+      <Reveal>
+        <figure className="mx-auto max-w-sm text-center">
+          <p className="font-script text-2xl text-olive">საიდან დაიწყო ყველაფერი...</p>
+          <div className="mt-5 rotate-[-1.5deg] rounded-2xl border border-olive/30 bg-parchment p-2 shadow-soft">
+            <div className="overflow-hidden rounded-xl border-[5px] border-parchment ring-1 ring-olive/20">
+              <img src="/images/perfect_2.jpg" alt="ანეტა და გიორგი — ბავშვობის ფოტოები" className="w-full object-cover" />
+            </div>
+          </div>
+        </figure>
+      </Reveal>
+    </section>
+  );
+}
 
 function CoupleImage() {
   const [i, setI] = useState(0);
@@ -492,7 +509,7 @@ function DressCode() {
             />
             <div className="animate-dance-sway relative origin-bottom">
               <img
-                src="/images/dancers-v2.png"
+                src="/images/dancers-v3.png"
                 alt="მოცეკვავე სტუმრები შემოდგომის ფერის სამოსში"
                 loading="lazy"
                 className="animate-dance-bob mx-auto block w-full"
