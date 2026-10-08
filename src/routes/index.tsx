@@ -142,7 +142,7 @@ function Hero() {
           shimmer={false}
           className="font-geo text-[13vw] leading-[1.1] sm:text-6xl"
         >
-          ანეტა
+          ლიკა
         </SparkleTitle>
         <p className="my-1 font-geo text-2xl text-ink/70">&amp;</p>
         <SparkleTitle
@@ -150,7 +150,7 @@ function Hero() {
           shimmer={false}
           className="font-geo text-[13vw] leading-[1.1] sm:text-6xl"
         >
-          გიორგი
+          მიშა
         </SparkleTitle>
         <div className="mt-8 rounded-full bg-parchment/70 px-6 py-3 backdrop-blur-[2px]">
           <p className="font-geo text-sm tracking-[0.3em] text-ink/85">12 ნოემბერი, 2026 · 17:00</p>
@@ -508,7 +508,7 @@ function Footer() {
         <span className="h-1.5 w-1.5 rotate-45 bg-olive/60" />
         <span className="h-px flex-1 bg-olive/35" />
       </div>
-      <p className="mt-8 font-geo text-4xl text-olive">ა &amp; გ</p>
+      <p className="mt-8 font-geo text-4xl text-olive">ლ &amp; მ</p>
       <p className="mt-5 font-geo text-sm tracking-[0.2em] text-ink/70">
         გელოდებით დიდი სიყვარულით
       </p>
