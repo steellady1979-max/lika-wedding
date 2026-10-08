@@ -13,27 +13,27 @@ const panelImg = "/images/panel.jpg";
 const bowImg = "/images/bow.png";
 const archImg = "/images/arch.jpg";
 const envelopeImg = "/images/envelope.png";
-const WEDDING_DATE = new Date("2026-10-31T14:00:00+04:00");
+const WEDDING_DATE = new Date("2026-11-12T17:00:00+04:00");
 const OG_IMAGE =
   "https://project--29d3676c-79dc-4353-9774-21b5d96eb7be.lovable.app/images/og-share.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "გეპატიჟებით ჩვენს ქორწილში — ანეტა & გიორგი" },
+      { title: "გეპატიჟებით ჩვენს ქორწილში — ლიკა & მიშა" },
       {
         name: "description",
-        content: "ანეტა & გიორგი · 31 ოქტომბერი, 2026",
+        content: "ლიკა & მიშა · 12 ნოემბერი, 2026 · 17:00",
       },
       { property: "og:title", content: "გეპატიჟებით ჩვენს ქორწილში" },
-      { property: "og:description", content: "ანეტა & გიორგი · 31 ოქტომბერი, 2026" },
+      { property: "og:description", content: "ლიკა & მიშა · 12 ნოემბერი, 2026 · 17:00" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "გეპატიჟებით ჩვენს ქორწილში" },
-      { name: "twitter:description", content: "ანეტა & გიორგი · 31 ოქტომბერი, 2026" },
+      { name: "twitter:description", content: "ლიკა & მიშა · 12 ნოემბერი, 2026 · 17:00" },
       { name: "twitter:image", content: OG_IMAGE },
     ],
   }),
@@ -47,7 +47,7 @@ function Invitation() {
 
   return (
     <main className="relative min-h-screen bg-backdrop">
-      <h1 className="sr-only">ანეტა და გიორგი — ქორწილის მოწვევა, 31 ოქტომბერი, 2026</h1>
+      <h1 className="sr-only">ლიკა და მიშა — ქორწილის მოწვევა, 12 ნოემბერი, 2026 · 17:00</h1>
 
       <div
         className={`transition-all duration-[1600ms] ease-out ${
@@ -142,7 +142,7 @@ function Hero() {
           shimmer={false}
           className="font-geo text-[13vw] leading-[1.1] sm:text-6xl"
         >
-          ანეტა
+          ლიკა
         </SparkleTitle>
         <p className="my-1 font-geo text-2xl text-ink/70">&amp;</p>
         <SparkleTitle
@@ -150,10 +150,10 @@ function Hero() {
           shimmer={false}
           className="font-geo text-[13vw] leading-[1.1] sm:text-6xl"
         >
-          გიორგი
+          მიშა
         </SparkleTitle>
         <div className="mt-8 rounded-full bg-parchment/70 px-6 py-3 backdrop-blur-[2px]">
-          <p className="font-geo text-sm tracking-[0.3em] text-ink/85">31 ოქტომბერი, 2026</p>
+          <p className="font-geo text-sm tracking-[0.3em] text-ink/85">12 ნოემბერი, 2026 · 17:00</p>
         </div>
 
         <Countdown />
@@ -230,21 +230,27 @@ function EnvelopeSection() {
                   className="font-geo text-[0.9rem] leading-[1.9] text-ink/85"
                 />
                 <Typewriter
-                  text="გეპატიჟებით ჩვენი ერთ-ერთი ყველაზე მნიშვნელოვანი და ლამაზი დღის გასაზიარებლად"
+                  text="გეპატიჟებით ჩვენი სიყვარულის დღესასწაულზე"
                   speed={32}
                   startDelay={1900}
                   className="mt-2 font-geo text-[0.9rem] leading-[1.9] text-ink/85"
                 />
                 <Typewriter
-                  text="სიყვარულით"
+                  text="გვინდა, ჩვენი ცხოვრების ეს განსაკუთრებული დღე თქვენთან ერთად გავიზიაროთ და ერთად შევქმნათ მოგონებები, რომლებიც დიდხანს გაგვყვება 🤍"
+                  speed={28}
+                  startDelay={3400}
+                  className="mt-2 font-geo text-[0.9rem] leading-[1.9] text-ink/85"
+                />
+                <Typewriter
+                  text="სიყვარულით,"
                   speed={55}
-                  startDelay={4800}
+                  startDelay={7600}
                   className="mt-4 font-geo text-[0.85rem] text-ink/70"
                 />
                 <Typewriter
-                  text="ანეტა & გიორგი"
+                  text="ლიკა & მიშა"
                   speed={55}
-                  startDelay={5600}
+                  startDelay={8400}
                   className="font-geo text-[0.95rem] text-olive"
                 />
               </div>
@@ -350,8 +356,8 @@ function Rsvp() {
 }
 
 const COUPLE_PHOTOS = [
-  { src: "/images/couple_2.jpg", alt: "ანეტა და გიორგი აივანზე" },
-  { src: "/images/couple_1.jpg", alt: "ანეტა და გიორგი ვარდებით" },
+  { src: "/images/moment-1.jpg", alt: "ლიკა და მიშა აივანზე" },
+  { src: "/images/moment-2.jpg", alt: "ლიკა და მიშა ვარდებით" },
 ];
 
 function ChildhoodPhoto() {
@@ -367,8 +373,8 @@ function ChildhoodPhoto() {
           <div className="rotate-[-2deg] bg-[color-mix(in_oklab,var(--parchment)_88%,white)] p-3 pb-5 shadow-[0_18px_36px_-14px_color-mix(in_oklab,var(--olive)_55%,transparent)] ring-1 ring-olive/20 transition-transform duration-500 ease-out group-hover:rotate-0 group-active:rotate-0">
             <div className="relative overflow-hidden ring-1 ring-olive/25">
               <img
-                src="/images/perfect_2.jpg"
-                alt="ანეტა და გიორგი — ბავშვობის ფოტოები"
+                src="/images/childhood-lm.jpg"
+                alt="ლიკა და მიშა — ბავშვობის ფოტოები"
                 className="aspect-[4/5] w-full object-cover object-center sepia-[.15] transition duration-700 group-hover:scale-[1.03] group-hover:sepia-0"
               />
               <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_30px_rgba(60,50,30,0.22)]" />
@@ -508,7 +514,7 @@ function Footer() {
         <span className="h-1.5 w-1.5 rotate-45 bg-olive/60" />
         <span className="h-px flex-1 bg-olive/35" />
       </div>
-      <p className="mt-8 font-geo text-4xl text-olive">ა &amp; გ</p>
+      <p className="mt-8 font-geo text-4xl text-olive">ლ &amp; მ</p>
       <p className="mt-5 font-geo text-sm tracking-[0.2em] text-ink/70">
         გელოდებით დიდი სიყვარულით
       </p>
@@ -516,78 +522,37 @@ function Footer() {
   );
 }
 
-const DRESS_COLORS = [
-  { name: "ზეთისხილისფერი", c: "var(--olive)" },
-  { name: "ბორდო", c: "var(--wine)" },
-  { name: "ტერაკოტა", c: "oklch(0.58 0.13 40)" },
-  { name: "ოქროსფერი", c: "oklch(0.74 0.12 82)" },
-  { name: "შოკოლადისფერი", c: "oklch(0.38 0.06 50)" },
-];
 
 function DressCode() {
-  const [picked, setPicked] = useState<number | null>(null);
-  const active = picked !== null ? DRESS_COLORS[picked]! : null;
   return (
     <section className="overflow-hidden bg-parchment px-6 py-20">
       <Reveal>
         <div className="mx-auto max-w-md text-center">
           <SparkleTitle className="font-geo text-2xl">დრესკოდი</SparkleTitle>
-          <p className="mt-3 font-geo text-base text-olive">შემოდგომის ფერები</p>
 
           <div className="relative mx-auto mt-10 w-full max-w-[18.5rem] sm:max-w-xs">
             <div
               aria-hidden
-              className="absolute -inset-x-4 inset-y-2 rounded-[50%] blur-3xl transition-all duration-700 ease-out"
-              style={{
-                background: active
-                  ? `color-mix(in oklab, ${active.c} 38%, transparent)`
-                  : "color-mix(in oklab, var(--olive) 12%, transparent)",
-                transform: active ? "scale(1.05)" : "scale(0.85)",
-              }}
+              className="absolute -inset-x-4 inset-y-2 rounded-[50%] blur-3xl"
+              style={{ background: "color-mix(in oklab, var(--olive) 14%, transparent)" }}
             />
             <div className="animate-dance-sway relative origin-bottom">
               <img
                 src="/images/dancers-v3.png"
-                alt="მოცეკვავე სტუმრები შემოდგომის ფერის სამოსში"
+                alt="მოცეკვავე სტუმრები სადღესასწაულო სამოსში"
                 loading="lazy"
                 className="animate-dance-bob mx-auto block w-full"
               />
             </div>
           </div>
 
-          <div className="mt-10 flex items-center justify-center gap-4">
-            {DRESS_COLORS.map((d, k) => (
-              <button
-                key={d.name}
-                type="button"
-                aria-label={d.name}
-                aria-pressed={picked === k}
-                onClick={() => setPicked(k)}
-                onMouseEnter={() => setPicked(k)}
-                onFocus={() => setPicked(k)}
-                className={`h-8 w-8 rounded-full border-2 border-parchment shadow-soft outline-none ring-1 ring-ink/10 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-olive/70 focus-visible:ring-offset-2 focus-visible:ring-offset-parchment ${
-                  picked === k
-                    ? "-translate-y-1 scale-110 ring-2 ring-olive/45"
-                    : "hover:-translate-y-0.5"
-                }`}
-                style={{ background: d.c }}
-              />
-            ))}
-          </div>
-
-          <div className="mt-5 flex h-7 items-center justify-center">
-            {active ? (
-              <span className="inline-flex items-center gap-2 rounded-full border border-olive/25 bg-parchment px-3 py-1 font-geo text-xs tracking-[0.18em] text-ink/75 shadow-soft">
-                <span
-                  aria-hidden
-                  className="h-2 w-2 rounded-full"
-                  style={{ background: active.c }}
-                />
-                {active.name}
-              </span>
-            ) : (
-              <span className="font-geo text-xs tracking-[0.2em] text-ink/45">შეეხე ფერს</span>
-            )}
+          <div className="mx-auto mt-10 min-h-[7.5rem] max-w-sm rounded-2xl border border-olive/20 bg-parchment/80 px-5 py-4 shadow-soft">
+            <Typewriter
+              text="განსაკუთრებული შეზღუდვა ფერებთან დაკავშირებით არ არის — შეგიძლიათ მოირგოთ თქვენთვის სასურველი და კომფორტული სამოსი, რომელიც ზოგადად სადღესასწაულო ატმოსფეროს მოუხდება."
+              speed={38}
+              startDelay={400}
+              className="font-geo text-[0.9rem] leading-[1.9] text-ink/80"
+            />
           </div>
         </div>
       </Reveal>
@@ -597,7 +562,6 @@ function DressCode() {
 
 function RsvpForm({ onSent }: { onSent: (attending: boolean) => void }) {
   const [name, setName] = useState("");
-  const [allergies, setAllergies] = useState("");
   const [attendanceChoice, setAttendanceChoice] = useState("yes");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -620,7 +584,7 @@ function RsvpForm({ onSent }: { onSent: (attending: boolean) => void }) {
         responseId,
         fullName,
         attending,
-        allergies: attending ? allergies.trim().slice(0, 500) : "",
+        allergies: "",
       });
     } catch (error) {
       sheetError = error;
@@ -667,23 +631,6 @@ function RsvpForm({ onSent }: { onSent: (attending: boolean) => void }) {
         </select>
       </div>
 
-      {attending && (
-        <div className="animate-fade-in">
-          <label htmlFor="allergies" className="font-geo text-xs tracking-[0.2em] text-ink/60">
-            ალერგია ან კვებითი შეზღუდვა
-          </label>
-          <textarea
-            id="allergies"
-            name="allergies"
-            rows={2}
-            maxLength={500}
-            value={allergies}
-            onChange={(e) => setAllergies(e.target.value)}
-            placeholder="მაგ.: თხილი, ლაქტოზა, ვეგეტარიანული... (არასავალდებულო)"
-            className="mt-1 w-full rounded-lg border border-ink/15 bg-parchment px-4 py-3 font-geo text-sm text-ink outline-none focus:border-olive"
-          />
-        </div>
-      )}
 
       {error && <p className="font-geo text-xs text-olive">{error}</p>}
 
