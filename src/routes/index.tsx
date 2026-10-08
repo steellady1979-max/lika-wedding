@@ -522,13 +522,6 @@ function Footer() {
   );
 }
 
-const DRESS_COLORS = [
-  { name: "ზეთისხილისფერი", c: "var(--olive)" },
-  { name: "ბორდო", c: "var(--wine)" },
-  { name: "ტერაკოტა", c: "oklch(0.58 0.13 40)" },
-  { name: "ოქროსფერი", c: "oklch(0.74 0.12 82)" },
-  { name: "შოკოლადისფერი", c: "oklch(0.38 0.06 50)" },
-];
 
 function DressCode() {
   return (
