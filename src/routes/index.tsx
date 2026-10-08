@@ -153,7 +153,7 @@ function Hero() {
           მიშა
         </SparkleTitle>
         <div className="mt-8 rounded-full bg-parchment/70 px-6 py-3 backdrop-blur-[2px]">
-          <p className="font-geo text-sm tracking-[0.3em] text-ink/85">12 ნოემბერი, 2026 · 17:00</p>
+          <p className="font-geo text-sm tracking-[0.3em] text-ink/85">12 ნოემბერი, 2026</p>
         </div>
 
         <Countdown />
@@ -546,13 +546,16 @@ function DressCode() {
             </div>
           </div>
 
-          <div className="mx-auto mt-10 min-h-[7.5rem] max-w-sm rounded-2xl border border-olive/20 bg-parchment/80 px-5 py-4 shadow-soft">
-            <Typewriter
-              text="განსაკუთრებული შეზღუდვა ფერებთან დაკავშირებით არ არის — შეგიძლიათ მოირგოთ თქვენთვის სასურველი და კომფორტული სამოსი, რომელიც ზოგადად სადღესასწაულო ატმოსფეროს მოუხდება."
-              speed={38}
-              startDelay={400}
-              className="font-geo text-[0.9rem] leading-[1.9] text-ink/80"
-            />
+          <div className="mx-auto mt-8 max-w-[17rem] animate-fade-in [animation-delay:300ms] [animation-fill-mode:both]">
+            <p className="font-script text-2xl leading-tight text-olive">ფერების შეზღუდვა არ არის</p>
+            <div className="my-3 flex items-center justify-center gap-2" aria-hidden="true">
+              <span className="h-px w-8 bg-olive/40" />
+              <span className="h-1.5 w-1.5 rotate-45 bg-olive/60" />
+              <span className="h-px w-8 bg-olive/40" />
+            </div>
+            <p className="font-geo text-[0.8rem] leading-[1.8] text-ink/70">
+              ჩაიცვით ის, რაშიც თავს კომფორტულად და სადღესასწაულოდ იგრძნობთ
+            </p>
           </div>
         </div>
       </Reveal>
