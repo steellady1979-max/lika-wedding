@@ -13,27 +13,27 @@ const panelImg = "/images/panel.jpg";
 const bowImg = "/images/bow.png";
 const archImg = "/images/arch.jpg";
 const envelopeImg = "/images/envelope.png";
-const WEDDING_DATE = new Date("2026-10-31T14:00:00+04:00");
+const WEDDING_DATE = new Date("2026-11-12T17:00:00+04:00");
 const OG_IMAGE =
   "https://project--29d3676c-79dc-4353-9774-21b5d96eb7be.lovable.app/images/og-share.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "გეპატიჟებით ჩვენს ქორწილში — ანეტა & გიორგი" },
+      { title: "გეპატიჟებით ჩვენს ქორწილში — ლიკა & მიშა" },
       {
         name: "description",
-        content: "ანეტა & გიორგი · 31 ოქტომბერი, 2026",
+        content: "ლიკა & მიშა · 12 ნოემბერი, 2026 · 17:00",
       },
       { property: "og:title", content: "გეპატიჟებით ჩვენს ქორწილში" },
-      { property: "og:description", content: "ანეტა & გიორგი · 31 ოქტომბერი, 2026" },
+      { property: "og:description", content: "ლიკა & მიშა · 12 ნოემბერი, 2026 · 17:00" },
       { property: "og:type", content: "website" },
       { property: "og:image", content: OG_IMAGE },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "გეპატიჟებით ჩვენს ქორწილში" },
-      { name: "twitter:description", content: "ანეტა & გიორგი · 31 ოქტომბერი, 2026" },
+      { name: "twitter:description", content: "ლიკა & მიშა · 12 ნოემბერი, 2026 · 17:00" },
       { name: "twitter:image", content: OG_IMAGE },
     ],
   }),
@@ -47,7 +47,7 @@ function Invitation() {
 
   return (
     <main className="relative min-h-screen bg-backdrop">
-      <h1 className="sr-only">ანეტა და გიორგი — ქორწილის მოწვევა, 31 ოქტომბერი, 2026</h1>
+      <h1 className="sr-only">ლიკა და მიშა — ქორწილის მოწვევა, 12 ნოემბერი, 2026 · 17:00</h1>
 
       <div
         className={`transition-all duration-[1600ms] ease-out ${
@@ -153,7 +153,7 @@ function Hero() {
           გიორგი
         </SparkleTitle>
         <div className="mt-8 rounded-full bg-parchment/70 px-6 py-3 backdrop-blur-[2px]">
-          <p className="font-geo text-sm tracking-[0.3em] text-ink/85">31 ოქტომბერი, 2026</p>
+          <p className="font-geo text-sm tracking-[0.3em] text-ink/85">12 ნოემბერი, 2026 · 17:00</p>
         </div>
 
         <Countdown />
@@ -242,7 +242,7 @@ function EnvelopeSection() {
                   className="mt-4 font-geo text-[0.85rem] text-ink/70"
                 />
                 <Typewriter
-                  text="ანეტა & გიორგი"
+                  text="ლიკა & მიშა"
                   speed={55}
                   startDelay={5600}
                   className="font-geo text-[0.95rem] text-olive"
@@ -350,8 +350,8 @@ function Rsvp() {
 }
 
 const COUPLE_PHOTOS = [
-  { src: "/images/couple_2.jpg", alt: "ანეტა და გიორგი აივანზე" },
-  { src: "/images/couple_1.jpg", alt: "ანეტა და გიორგი ვარდებით" },
+  { src: "/images/moment-1.jpg", alt: "ლიკა და მიშა აივანზე" },
+  { src: "/images/moment-2.jpg", alt: "ლიკა და მიშა ვარდებით" },
 ];
 
 function ChildhoodPhoto() {
@@ -367,8 +367,8 @@ function ChildhoodPhoto() {
           <div className="rotate-[-2deg] bg-[color-mix(in_oklab,var(--parchment)_88%,white)] p-3 pb-5 shadow-[0_18px_36px_-14px_color-mix(in_oklab,var(--olive)_55%,transparent)] ring-1 ring-olive/20 transition-transform duration-500 ease-out group-hover:rotate-0 group-active:rotate-0">
             <div className="relative overflow-hidden ring-1 ring-olive/25">
               <img
-                src="/images/perfect_2.jpg"
-                alt="ანეტა და გიორგი — ბავშვობის ფოტოები"
+                src="/images/childhood-lm.jpg"
+                alt="ლიკა და მიშა — ბავშვობის ფოტოები"
                 className="aspect-[4/5] w-full object-cover object-center sepia-[.15] transition duration-700 group-hover:scale-[1.03] group-hover:sepia-0"
               />
               <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_30px_rgba(60,50,30,0.22)]" />

@@ -45,11 +45,11 @@ export function AutumnLeaves() {
   );
 }
 
-const TITLE = "ანეტა & გიორგი — ქორწილი";
+const TITLE = "ლიკა & მიშა — ქორწილი";
 const DETAILS = "ჯვრისწერა 14:00 — ნინოწმინდის მონასტერი; ხელისმოწერა 16:30 და ვახშამი 18:00 — გიუაანი მეღვინეობა";
 const LOCATION = "ნინოწმინდის მონასტერი, საგარეჯო";
-const START = "20261031T100000Z";
-const END = "20261031T200000Z";
+const START = "20261112T130000Z";
+const END = "20261112T230000Z";
 
 export function AddToCalendar() {
   const google = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
