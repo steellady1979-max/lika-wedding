@@ -133,11 +133,11 @@
 }
 
 :root {
-  --backdrop: oklch(0.36 0.05 125);
-  --parchment: oklch(0.975 0.012 85);
-  --ink: oklch(0.3 0.04 120);
-  --wine: oklch(0.36 0.12 15);
-  --olive: oklch(0.47 0.09 118);
+  --backdrop: oklch(0.9 0.035 10);
+  --parchment: oklch(0.98 0.01 20);
+  --ink: oklch(0.32 0.05 10);
+  --wine: oklch(0.38 0.1 8);
+  --olive: oklch(0.55 0.1 8);
   --sage: oklch(0.55 0.075 150);
   --shadow-soft: 0 12px 30px -12px oklch(0.26 0.085 18 / 0.35);
   --shadow-door: 0 0 60px -10px oklch(0.22 0.07 18 / 0.5);
