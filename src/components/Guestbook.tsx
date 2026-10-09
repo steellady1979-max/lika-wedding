@@ -76,7 +76,7 @@ export function Guestbook() {
   const next = flip ? (spreads[flip.to] ?? []) : current;
 
   return (
-    <section className="bg-backdrop px-4 py-20 sm:px-6">
+    <section className="bg-wine px-4 py-20 sm:px-6">
       <div className="mx-auto max-w-4xl text-center">
         <Reveal>
           <SparkleTitle
