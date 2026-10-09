@@ -46,9 +46,9 @@ export function AutumnLeaves() {
 }
 
 const TITLE = "ლიკა & მიშა — ქორწილი";
-const DETAILS = "ჯვრისწერა 14:00 — ნინოწმინდის მონასტერი; ხელისმოწერა 16:30 და ვახშამი 18:00 — გიუაანი მეღვინეობა";
-const LOCATION = "ნინოწმინდის მონასტერი, საგარეჯო";
-const START = "20261112T130000Z";
+const DETAILS = "ჯვრისწერა 14:00 — სიონის საკათედრო ტაძარი; ხელისმოწერა 17:00 და ვახშამი 18:00 — ლისი მერე";
+const LOCATION = "სიონის საკათედრო ტაძარი, თბილისი";
+const START = "20261112T100000Z";
 const END = "20261112T230000Z";
 
 export function AddToCalendar() {
