@@ -15,7 +15,7 @@ const archImg = "/images/arch.jpg";
 const envelopeImg = "/images/envelope.png";
 const WEDDING_DATE = new Date("2026-11-12T17:00:00+04:00");
 const OG_IMAGE =
-  "https://project--29d3676c-79dc-4353-9774-21b5d96eb7be.lovable.app/images/og-share.jpg";
+  "https://lika-wedding.vercel.app/images/og-share.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
