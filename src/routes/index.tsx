@@ -67,6 +67,21 @@ function Invitation() {
         <Footer />
       </div>
 
+      {open && (
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: "smooth" })}
+          className="fixed bottom-7 left-1/2 z-50 -translate-x-1/2 font-geo text-xs tracking-[0.28em] text-ink/55 transition hover:text-ink/80 animate-fade-in"
+          aria-label="ჩამოსქროლე ქვემოთ"
+        >
+          <span className="flex flex-col items-center gap-1">
+            <span>ჩამოსქროლე</span>
+            <span aria-hidden className="text-base leading-none">⌄</span>
+          </span>
+        </button>
+      )}
+
+
       {/* Doors */}
       <div
         className={`fixed inset-0 z-40 transition-opacity duration-700 ${
